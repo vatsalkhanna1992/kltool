@@ -10,6 +10,10 @@ const partialsPath = path.join(__dirname, '../templates/partials')
 
 // Setup static directory to use.
 app.use(express.static(publicDirectoryPath))
+app.use('/js', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/js')))
+app.use('/js', express.static(path.join(__dirname, '../node_modules/jquery/dist')))
+app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/css')))
+
 // Set views engine to use handlebars.
 app.set('view engine', 'hbs')
 // Set views path.
