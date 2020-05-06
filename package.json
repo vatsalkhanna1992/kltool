@@ -1,0 +1,19 @@
+{
+  "name": "kltool",
+  "version": "1.0.0",
+  "description": "Provides personal Kanban board and learning tool.",
+  "main": "app.js",
+  "scripts": {
+    "start": "src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/vatsalkhanna1992/kltool.git"
+  },
+  "author": "Vatsal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vatsalkhanna1992/kltool/issues"
+  },
+  "homepage": "https://github.com/vatsalkhanna1992/kltool#readme"
+}
