@@ -4,7 +4,8 @@
   "description": "Provides personal Kanban board and learning tool.",
   "main": "app.js",
   "scripts": {
-    "start": "src/app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js -e hbs,js,css"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,16 @@
   "bugs": {
     "url": "https://github.com/vatsalkhanna1992/kltool/issues"
   },
-  "homepage": "https://github.com/vatsalkhanna1992/kltool#readme"
+  "homepage": "https://github.com/vatsalkhanna1992/kltool#readme",
+  "dependencies": {
+    "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "jquery": "^3.5.1",
+    "path": "^0.12.7",
+    "popper.js": "^1.16.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
 }
