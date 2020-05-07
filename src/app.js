@@ -41,7 +41,6 @@ app.get('/register', (req, res) => {
 })
 
 app.post('/user/registration', (req, res) => {
-    res.setHeader('Content-Type', 'application/json')
     const user = new Users({
         username: req.body.username,
         first_name: req.body.first_name,
