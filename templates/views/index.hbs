@@ -2,17 +2,34 @@
 <html>
     <head>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
         <script src="/js/jquery.js"></script>
         <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/scripts.js"></script>
         <title>
-            Ktool
+            Kltool
         </title>
     </head>
     <body>
-        <div>
-            <h1>
-                Welcome to Kltool!
-            </h1>
+        <div class="container">
+            <form method="post" action="/dashboard">
+                <div class="row">
+                    <h1>
+                        Welcome to Kltool!
+                    </h1>
+                </div>
+                <div class="row">
+                    <label>Username</label>
+                    <input type="text" name="username"/>
+                </div>
+                <div class="row">
+                    <label>Password</label>
+                    <input type="password" name="pass"/>
+                </div>
+                <div class="row">
+                    <button type="submit" name="pass">Submit</button>
+                </div>
+            </form>
         </div>
     </body>
 </html>
