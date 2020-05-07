@@ -18,13 +18,16 @@
   },
   "homepage": "https://github.com/vatsalkhanna1992/kltool#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "bootstrap-material-design": "^4.1.2",
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "jquery": "^3.5.1",
+    "mongoose": "^5.9.12",
     "path": "^0.12.7",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
