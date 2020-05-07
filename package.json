@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/vatsalkhanna1992/kltool#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
     "bootstrap-material-design": "^4.1.2",
     "express": "^4.17.1",

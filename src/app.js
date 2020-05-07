@@ -1,7 +1,7 @@
 const express = require('express')
 const hbs = require('hbs')
 const path = require('path')
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 const app = express()
 const port = process.env.PORT || 3002
@@ -17,7 +17,7 @@ app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap/d
 app.use('/js', express.static(path.join(__dirname, '../node_modules/bootstrap-material-design/dist/js')))
 app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap-material-design/dist/css')))
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }))
+//app.use(bodyParser.urlencoded({ extended: true }))
 
 // Set views engine to use handlebars.
 app.set('view engine', 'hbs')
