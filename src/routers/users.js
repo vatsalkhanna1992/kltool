@@ -1,5 +1,6 @@
 const express = require('express')
 const Users = require('../models/users')
+const auth = require('../middleware/auth')
 
 const router = new express.Router()
 
@@ -20,14 +21,9 @@ router.get('/user/:id', async (req, res) => {
     }
 })
 
-// Get all users.
-router.get('/users', async (req, res) => {
-    try {
-        const users = await Users.find({})
-        res.send(users)
-    } catch (e) {
-        res.status(500).send(e)
-    }
+// Get user profile.
+router.get('/users/profile', auth, async (req, res) => {
+    res.send(req.user)
 })
 
 // User login.
@@ -108,6 +104,36 @@ router.delete('/user/:id', async (req, res) => {
         res.send(user)
     } catch (e) {
         res.status(400).send(e)
+    }
+})
+
+// Logout from current device.
+router.post('/user/logout', auth, async (req, res) => {
+    try {
+        req.user.tokens = req.user.tokens.filter((token) => {
+            return token.token !== req.token
+        })
+
+        // Remove current token used for login from database.
+        await req.user.save()
+
+        res.send()
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+// Logout from all devices
+router.post('/user/logout-all', auth, async (req, res) => {
+    try {
+        req.user.tokens = []
+
+        // Remove all tokens used for login from database.
+        await req.user.save()
+
+        res.send()
+    } catch (e) {
+        res.status(500).send()
     }
 })
 

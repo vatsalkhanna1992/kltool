@@ -11,6 +11,11 @@ const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
+// Setup express middleware
+/* app.use((req, res, next) => {
+    res.status(503).send('Site is currently under maintenance. Check back soon!')
+}) */
+
 // Setup static directory to use.
 app.use(express.static(publicDirectoryPath))
 app.use(bodyParser.json())

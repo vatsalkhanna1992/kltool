@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.generateAuthToken = async function() {
     const user = this
-    const token = jwt.sign({ _id: user._id.toString() }, 'kltoolGenerateAuthToken', { expiresIn: '1 minute'})
+    const token = jwt.sign({ _id: user._id.toString() }, 'kltoolGenerateAuthToken', { expiresIn: '24 hours'})
 
     user.tokens = user.tokens.concat({ token })
     await user.save()
