@@ -1,10 +1,12 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
+const bcrypt = require('bcryptjs')
 
-const Users = mongoose.model('Users', {
+const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
+        unique: true,
         trim: true,
         lowercase: true,
         validate(value) {
@@ -35,5 +37,30 @@ const Users = mongoose.model('Users', {
         }
     }
 })
+
+// Check credentials provided on login screen.
+userSchema.statics.findByCredentials = async (username, password) => {
+    const user = await Users.findOne({ username })
+    if (!user) {
+        throw new Error('Unable to login.')
+    }
+    const passwordMatch = await bcrypt.compare(password, user.password)
+
+    if (!passwordMatch) {
+        throw new Error('Unable to login.')
+    }
+    return user
+}
+
+// Hash password before saving.
+userSchema.pre('save', async function(next) {
+    const user = this
+    if (user.isModified('password')) { // Will be called on both user creation and updation.
+        user.password = await bcrypt.hash(user.password, 8)
+    }
+    next() // Important. It lets the code know that pre-save is done and can move forward.
+})
+
+const Users = mongoose.model('Users', userSchema)
 
 module.exports = Users;
