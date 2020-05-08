@@ -33,9 +33,9 @@ app.get('', (req, res) => {
     res.render('index')
 })
 
-app.post('/dashboard', (req, res) => {
+/* app.post('/dashboard', (req, res) => {
     console.log(req.body)
-})
+}) */
 
 app.get('/register', (req, res) => {
     res.render('register')
