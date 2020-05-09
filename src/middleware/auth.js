@@ -9,8 +9,8 @@ const auth = async (req, res, next) => {
         const decode = jwt.verify(token, process.env.JWT_SECRET)
         const user = await Users.findOne({ _id: decode._id, 'tokens.token': token })
 
-        if (!user) {
-            throw new Error()
+        if (!user && req.path !== '/') {
+            return res.redirect('/')
         }
         req.token = token
         req.user = user

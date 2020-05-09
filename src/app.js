@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const userRouter = require('./routers/users')
 require('./utils/dbconnect')
 const cookieParser = require('cookie-parser')
+const auth = require('./middleware/auth')
 
 const app = express()
 const port = process.env.PORT
@@ -36,13 +37,23 @@ app.set('views', viewsPath)
 // Register Partials.
 hbs.registerPartials(partialsPath)
 
-app.get('', (req, res) => {
+app.get('/', auth, (req, res) => {
+    console.log(req.user)
+    if (req.user) {
+        res.render('dashboard', {
+            firstName: req.user.first_name,
+            lastName: req.user.last_name
+        })
+    }
     res.render('index')
 })
 
-/* app.post('/dashboard', (req, res) => {
-    console.log(req.body)
-}) */
+/* app.get('/dashboard', (req, res) => {
+    res.render('dashboard', {
+        first_name: req.first_name,
+        last_name: req.last_name,
+    })
+})*/
 
 app.get('/register', (req, res) => {
     res.render('register')
