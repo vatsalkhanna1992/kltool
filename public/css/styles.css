@@ -1,3 +1,15 @@
 .error {
     color: red;
 }
+
+.header {
+    height: 100px;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.logo a {
+    color: #5e35b1;
+}

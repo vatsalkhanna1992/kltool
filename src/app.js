@@ -54,7 +54,7 @@ app.get('/', auth, (req, res) => {
         first_name: req.first_name,
         last_name: req.last_name,
     })
-})*/
+}) */
 
 app.get('/register', (req, res) => {
     res.render('register')

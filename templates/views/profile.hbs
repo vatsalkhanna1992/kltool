@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{>general_css_js}}
+        <title>
+           User Profile | Kltool
+        </title>
+    </head>
+    <body>
+        <div class="container">
+            {{>header}}
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <form method="post" action="/update/profile">
+                        <div class="container">
+                            <div class="row">
+                                <h4>
+                                    Update Profile
+                                </h4>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <label>Username</label>
+                                    <input type="text" name="username" value={{username}} size="50" disabled>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <label>First Name</label>
+                                    <input type="text" name="first_name" value={{firstName}} size="50">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div>
+                                    <label>Last Name</label>
+                                    <input type="text" name="last_name" value={{lastName}} size="50">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button class="btn" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-6">
+                    <form method="post" action="/update/password"></form>
+                        <div class="container">
+                            <div class="row">
+                                <h4>
+                                    Change Password
+                                </h4>
+                            </div>
+                            <div class="row">
+                                <div class="input-field">
+                                    <input type="password" name="password" size="50" required>
+                                    <label>Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field">
+                                    <input type="password" name="confirm_password" size="50" required>
+                                    <label>Confirm Password</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button class="btn" type="submit">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

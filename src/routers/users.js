@@ -6,7 +6,12 @@ const router = new express.Router()
 
 // Get user profile.
 router.get('/user/profile', auth, async (req, res) => {
-    res.send(req.user)
+    //res.send(req.user)
+    res.render('profile', {
+        username: req.user.username,
+        firstName: req.user.first_name,
+        lastName: req.user.last_name
+    })
 })
 
 // Redirect to home page if user tries to visit this url.

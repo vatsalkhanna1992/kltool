@@ -1,9 +1,24 @@
 <div class="header">
-    <a href="/user/profile">My Profile</a>
-    <form method="post" action="/user/logout">
-        <button type="submit">Logout</button>
-    </form>
-    <form method="post" action="/user/logout-all">
-        <button type="submit">Logout from all devices</button>
-    </form>
+    <div class="row left">
+        <div class="col-xs-4">
+            <p class="logo"><a href="/">Kltool</a></p>
+        </div>
+    </div>
+    <div class="row right">
+        <div class="col-xs-4">
+            <p>
+                <a href="/user/profile" class="btn deep-purple lighten-2">My Profile</a>
+            <p>
+        </div>
+        <div class="col-xs-4">
+            <form method="post" action="/user/logout">
+                <button type="submit" class="btn deep-purple lighten-2">Logout</button>
+            </form>
+        </div>
+        <div class="col-xs-4">
+            <form method="post" action="/user/logout-all">
+                <button type="submit" class="btn deep-purple lighten-2">Logout from all devices</button>
+            </form>
+        </div>
+    </div>
 </div>
