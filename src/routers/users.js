@@ -4,6 +4,11 @@ const auth = require('../middleware/auth')
 
 const router = new express.Router()
 
+// Get user profile.
+router.get('/user/profile', auth, async (req, res) => {
+    res.send(req.user)
+})
+
 // Get a user by id.
 router.get('/user/:id', async (req, res) => {
     const _id = req.params.id
@@ -21,21 +26,17 @@ router.get('/user/:id', async (req, res) => {
     }
 })
 
-// Get user profile.
-router.get('/users/profile', auth, async (req, res) => {
-    res.send(req.user)
-})
-
 // User login.
 router.post('/user/login', async (req, res) => {
     try {
         const user = await Users.findByCredentials(req.body.username, req.body.password)
         const token = await user.generateAuthToken()
-        /* res.render('dashboard', {
+        res.cookie('auth', token)
+        res.render('dashboard', {
             firstName: user.first_name,
             lastName: user.last_name
-        }) */
-        res.send({user, token})
+        })
+        //res.send({user, token})
     } catch (e) {
         res.status(400).send({
             error: 'Unable to login.'
@@ -49,11 +50,13 @@ router.post('/user/registration', async (req, res) => {
     try {
         await user.save()
         const token = await user.generateAuthToken()
-        res.status(201).send({ user, token})
-        /* res.render('dashboard', {
+        res.cookie('jwt', token)
+        res.status(201)
+        //res.send({ user, token})
+        res.render('dashboard', {
             firstName: req.body.first_name,
             lastName: req.body.last_name
-        }) */
+        })
     } catch (e) {
         res.status(400).send(e)
     }
@@ -117,7 +120,7 @@ router.post('/user/logout', auth, async (req, res) => {
         // Remove current token used for login from database.
         await req.user.save()
 
-        res.send()
+        res.redirect('/')
     } catch (e) {
         res.status(500).send()
     }
@@ -131,7 +134,7 @@ router.post('/user/logout-all', auth, async (req, res) => {
         // Remove all tokens used for login from database.
         await req.user.save()
 
-        res.send()
+        res.redirect('/')
     } catch (e) {
         res.status(500).send()
     }

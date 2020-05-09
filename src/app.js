@@ -4,6 +4,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const userRouter = require('./routers/users')
 require('./utils/dbconnect')
+const cookieParser = require('cookie-parser')
 
 const app = express()
 const port = process.env.PORT
@@ -17,6 +18,7 @@ const partialsPath = path.join(__dirname, '../templates/partials')
 }) */
 
 // Setup static directory to use.
+app.use(cookieParser())
 app.use(express.static(publicDirectoryPath))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
