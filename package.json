@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js -e hbs,js,css"
+    "dev": "env-cmd nodemon src/app.js -e hbs,js,css"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "validator": "^13.0.0"
   },
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "nodemon": "^2.0.3"
   }
 }
