@@ -41,7 +41,7 @@ hbs.registerPartials(partialsPath)
 
 app.get('/', auth, (req, res) => {
     if (req.user) {
-        res.render('dashboard', {
+        return res.render('dashboard', {
             firstName: req.user.first_name,
             lastName: req.user.last_name
         })

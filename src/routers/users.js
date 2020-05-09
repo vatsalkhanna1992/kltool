@@ -9,6 +9,11 @@ router.get('/user/profile', auth, async (req, res) => {
     res.send(req.user)
 })
 
+// Redirect to home page if user tries to visit this url.
+router.get('/user/login', async (req, res) => {
+    res.status('301').redirect('/')
+})
+
 // Get a user by id.
 router.get('/user/:id', async (req, res) => {
     const _id = req.params.id
@@ -38,8 +43,11 @@ router.post('/user/login', async (req, res) => {
         })
         //res.send({user, token})
     } catch (e) {
-        res.status(400).send({
+        /* res.status(400).send({
             error: 'Unable to login.'
+        }) */
+        res.status(400).render('index', {
+            error: 'Invalid username or password.'
         })
     }
 })
