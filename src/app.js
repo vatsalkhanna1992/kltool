@@ -40,7 +40,6 @@ app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
 
 app.get('/', auth, (req, res) => {
-    console.log(req.user)
     if (req.user) {
         res.render('dashboard', {
             firstName: req.user.first_name,
