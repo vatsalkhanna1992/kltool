@@ -60,6 +60,10 @@ app.get('/register', (req, res) => {
     res.render('register')
 })
 
+app.get('*', (req, res) => {
+    res.status(404).render('404')
+})
+
 // Start server.
 app.listen(port, () => {
     console.log('Server is up and running at port ' + port)

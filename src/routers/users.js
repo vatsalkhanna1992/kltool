@@ -17,6 +17,9 @@ router.get('/user/login', async (req, res) => {
 // Get a user by id.
 router.get('/user/:id', async (req, res) => {
     const _id = req.params.id
+    if (isNaN(_id)) {
+        return res.status(404).render('404')
+    }
 
     try {
         const user = await Users.findById(_id)
