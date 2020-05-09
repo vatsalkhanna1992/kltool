@@ -2,42 +2,50 @@
 <html>
     <head>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/bootstrap-material-design.min.css">
+        <link rel="stylesheet" href="/css/materialize.min.css">
         <link rel="stylesheet" href="/css/styles.css">
         <script src="/js/jquery.js"></script>
         <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/bootstrap-material-design.min.js"></script>
+        <script src="/js/materialize.min.js"></script>
         <script src="/js/scripts.js"></script>
         <title>
-            Kltool
+           User Registration | Kltool
         </title>
     </head>
     <body>
         <div class="container">
             <form method="post" action="/user/registration">
                 <div class="row">
-                    <h1>
+                    <h3>
                         Get Started
-                    </h1>
+                    </h3>
                 </div>
                 <div class="row">
-                    <label>Username</label>
-                    <input type="text" name="username" required/>
+                    <div class="input-field">
+                        <input id="icon_prefix" type="text" name="username" size="50" required>
+                        <label for="icon_prefix">Username</label>
+                    </div>
                 </div>
                 <div class="row">
-                    <label>First Name</label>
-                    <input type="text" name="first_name" required/>
+                    <div class="input-field">
+                        <input id="icon_prefix" type="text" name="first_name" size="50" required>
+                        <label for="icon_prefix">First Name</label>
+                    </div>
                 </div>
                 <div class="row">
-                    <label>Last Name</label>
-                    <input type="text" name="last_name" required/>
+                    <div class="input-field">
+                        <input id="icon_prefix" type="text" name="last_name" size="50" required>
+                        <label for="icon_prefix">Last Name</label>
+                    </div>
                 </div>
                 <div class="row">
-                    <label>Password</label>
-                    <input type="password" name="password" required/>
+                    <div class="input-field">
+                        <input id="icon_prefix" type="password" name="password" size="50" required>
+                        <label for="icon_prefix">Password</label>
+                    </div>
                 </div>
                 <div class="row">
-                    <button type="submit">Get Started</button>
+                    <button class="btn" type="submit">Get Started</button>
                 </div>
                 <div class="row">
                     <p>Already have an account? <a href="/">Sign in</a></p>

@@ -2,32 +2,38 @@
 <html>
     <head>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/materialize.min.css">
         <link rel="stylesheet" href="/css/styles.css">
         <script src="/js/jquery.js"></script>
         <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/materialize.min.js"></script>
         <script src="/js/scripts.js"></script>
         <title>
-            Kltool
+            User Login | Kltool
         </title>
     </head>
     <body>
         <div class="container">
             <form method="post" action="/user/login">
                 <div class="row">
-                    <h1>
+                    <h3>
                         Welcome to Kltool!
-                    </h1>
+                    </h3>
                 </div>
                 <div class="row">
-                    <label>Username</label>
-                    <input type="text" name="username" required/>
+                    <div class="input-field">
+                        <input id="icon_prefix" type="text" name="username" size="30" required>
+                        <label for="icon_prefix">Username</label>
+                    </div>
                 </div>
                 <div class="row">
-                    <label>Password</label>
-                    <input type="password" name="password" required/>
+                    <div class="input-field">
+                        <input id="icon_prefix" type="password" name="password" size="30" required>
+                        <label for="icon_prefix">Password</label>
+                    </div>
                 </div>
                 <div class="row">
-                    <button type="submit">Login</button>
+                    <button type="submit" class="btn">Login</button>
                 </div>
                 <div class="row">
                     <a href="/register">Sign up</a>

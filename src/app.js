@@ -28,6 +28,8 @@ app.use('/js', express.static(path.join(__dirname, '../node_modules/jquery/dist'
 app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap/dist/css')))
 app.use('/js', express.static(path.join(__dirname, '../node_modules/bootstrap-material-design/dist/js')))
 app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap-material-design/dist/css')))
+app.use('/css', express.static(path.join(__dirname, '../node_modules/materialize-css/dist/css')))
+app.use('/js', express.static(path.join(__dirname, '../node_modules/materialize-css/dist/js')))
 app.use(userRouter)
 
 // Set views engine to use handlebars.
