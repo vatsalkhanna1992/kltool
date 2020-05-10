@@ -1,12 +1,5 @@
-/* fetch('/dashboard', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        user: {
-            name: "John",
-            email: "john@example.com"
-        }
-    })
-}); */
+$ = jQuery
+
+$('.kanban-board .add').on('click', function() {
+    alert(1);
+});

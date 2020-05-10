@@ -13,3 +13,20 @@
 .logo a {
     color: #5e35b1;
 }
+
+.kanban-board .col.s3 {
+    text-align: center;
+    border-right: 1px solid black;
+}
+
+.kanban-board .col.s3 {
+    border-left: 1px solid black;
+}
+.kanban-board h5 {
+    text-align: center;
+}
+.modal {
+    background-color: transparent !important;
+    max-height: unset !important;
+    width: unset !important;
+}

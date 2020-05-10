@@ -49,6 +49,9 @@ app.get('/', auth, (req, res) => {
     res.render('index')
 })
 
+app.get('/kanban-board', auth, (req, res) => {
+    res.render('kanban')
+})
 /* app.get('/dashboard', (req, res) => {
     res.render('dashboard', {
         first_name: req.first_name,

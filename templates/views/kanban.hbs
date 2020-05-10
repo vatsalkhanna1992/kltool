@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Kanban board | Kltool
+        </title>
+    </head>
+    <body class="kanban-board">
+        <div class="container">
+            {{>header}}
+            <div class="row">
+                <div class="col s12">
+                    <h5>Kanban Board <button title="Add Card" type="button" data-toggle="modal" data-target="#myModal">+</button></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s3 todo">
+                    <h6>To Do</h6>
+                    <div class="cards"></div>
+                </div>
+                <div class="col s3 inprogress">
+                    <h6>In Progress</h6>
+                    <div class="cards"></div>
+                </div>
+                <div class="col s3 completed">
+                    <h6>Completed</h6>
+                    <div class="cards"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h5 class="modal-title">New Card</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-field">
+                                <input type="text" name="" required>
+                                <label>Task</label>
+                            </div>
+                            <div class="input-field">
+                                <textarea name="card_description" class="materialize-textarea"></textarea>
+                                <label>Description</label>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Add Card</button>
+                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{>general_css_js}}
+        {{>materialize}}
+    </body>
+</html>

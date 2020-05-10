@@ -66,7 +66,7 @@ router.post('/user/registration', async (req, res) => {
     try {
         await user.save()
         const token = await user.generateAuthToken()
-        res.cookie('jwt', token)
+        res.cookie('auth', token)
         res.status(201)
         //res.send({ user, token})
         res.render('dashboard', {
