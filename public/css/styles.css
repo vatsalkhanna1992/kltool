@@ -30,3 +30,12 @@
     max-height: unset !important;
     width: unset !important;
 }
+.message {
+    color: green;
+}
+
+.cards .card {
+    width: 80%;
+    height: auto;
+    margin-left: 30px;
+}

@@ -14,6 +14,28 @@ router.get('/user/profile', auth, async (req, res) => {
     })
 })
 
+router.get('/update/profile', auth, async (req, res) => {
+    res.redirect('/user/profile')
+})
+
+// Update user profile.
+router.post('/update/profile', auth, async (req, res) => {
+    first_name = req.body.first_name
+    last_name = req.body.last_name
+    const updated_user = await Users.findByIdAndUpdate(req.user.id, { first_name, last_name }, { new:true, runValidators: true })
+    if (!updated_user) {
+        res.status(404).send({
+            error: 'User not found! Please login again'
+        })
+    }
+    res.render('profile', {
+        username: req.user.username,
+        firstName: updated_user.first_name,
+        lastName: updated_user.last_name,
+        message_profile: 'Profile Updated Successfully.'
+    })
+})
+
 // Redirect to home page if user tries to visit this url.
 router.get('/user/login', async (req, res) => {
     res.status('301').redirect('/')

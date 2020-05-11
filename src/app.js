@@ -3,6 +3,7 @@ const hbs = require('hbs')
 const path = require('path')
 const bodyParser = require('body-parser')
 const userRouter = require('./routers/users')
+const cardRouter = require('./routers/cards')
 require('./utils/dbconnect')
 const cookieParser = require('cookie-parser')
 const auth = require('./middleware/auth')
@@ -31,6 +32,7 @@ app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap-m
 app.use('/css', express.static(path.join(__dirname, '../node_modules/materialize-css/dist/css')))
 app.use('/js', express.static(path.join(__dirname, '../node_modules/materialize-css/dist/js')))
 app.use(userRouter)
+app.use(cardRouter)
 
 // Set views engine to use handlebars.
 app.set('view engine', 'hbs')
@@ -49,9 +51,9 @@ app.get('/', auth, (req, res) => {
     res.render('index')
 })
 
-app.get('/kanban-board', auth, (req, res) => {
+/* app.get('/kanban-board', auth, (req, res) => {
     res.render('kanban')
-})
+}) */
 /* app.get('/dashboard', (req, res) => {
     res.render('dashboard', {
         first_name: req.first_name,

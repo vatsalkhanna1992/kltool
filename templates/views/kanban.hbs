@@ -14,24 +14,57 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col s3 todo">
+                <div class="col s3">
                     <h6>To Do</h6>
-                    <div class="cards"></div>
+                    <div class="cards">
+                        {{#each cards}}
+                            {{#cardsStatus this.status 'todo'}}
+                                    <div class="row">
+                                        <div class="card todo">
+                                            <p class="card_title">{{ this.title }}</p>
+                                            <p class="card_description">{{ this.description }}</p>
+                                        </div>
+                                    </div>
+                            {{/cardsStatus}}
+                        {{/each}}
+                    </div>
                 </div>
-                <div class="col s3 inprogress">
+                <div class="col s3">
                     <h6>In Progress</h6>
-                    <div class="cards"></div>
+                    <div class="cards">
+                        {{#each cards}}
+                            {{#cardsStatus this.status 'in_progress'}}
+                                    <div class="row">
+                                        <div class="card inprogress">
+                                            <p class="card_title">{{ this.title }}</p>
+                                            <p class="card_description">{{ this.description }}</p>
+                                        </div>
+                                    </div>
+                            {{/cardsStatus}}
+                        {{/each}}
+                    </div>
                 </div>
-                <div class="col s3 completed">
+                <div class="col s3">
                     <h6>Completed</h6>
-                    <div class="cards"></div>
+                    <div class="cards">
+                        {{#each cards}}
+                            {{#cardsStatus this.status 'done'}}
+                                    <div class="row">
+                                        <div class="card completed">
+                                            <p class="card_title">{{ this.title }}</p>
+                                            <p class="card_description">{{ this.description }}</p>
+                                        </div>
+                                    </div>
+                            {{/cardsStatus}}
+                        {{/each}}
+                    </div>
                 </div>
             </div>
         </div>
         <div class="modal" tabindex="-1" role="dialog" id="myModal">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form>
+                    <form method="post" action="/add/card">
                         <div class="modal-header">
                             <h5 class="modal-title">New Card</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -40,7 +73,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="input-field">
-                                <input type="text" name="" required>
+                                <input type="text" name="card_title" required>
                                 <label>Task</label>
                             </div>
                             <div class="input-field">
