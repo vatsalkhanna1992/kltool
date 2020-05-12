@@ -77,7 +77,6 @@ router.get('/fetch/card', auth, async (req, res) => {
     const card_id = req.query.id
     try {
         const card = await Cards.findById(card_id)
-        res.status(301).redirect('/kanban-board')
         res.send({
             card
         })
