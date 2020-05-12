@@ -16,12 +16,8 @@
 
 .kanban-board .col.s3 {
     text-align: center;
-    border-right: 1px solid black;
 }
 
-.kanban-board .col.s3 {
-    border-left: 1px solid black;
-}
 .kanban-board h5 {
     text-align: center;
 }
@@ -34,8 +30,89 @@
     color: green;
 }
 
-.cards .card {
-    width: 80%;
-    height: auto;
-    margin-left: 30px;
+.kanban-board h5.page_title {
+    font-size: 22px;
+    color: #5e35b1;
+    vertical-align: center;
+    height: 40px;
+    border-radius: 5px;
+    padding-top: 7px;
 }
+
+.kanban-board .page_title button,
+.kanban-board .page_title button:focus,
+.kanban-board .page_title button:active,
+.kanban-board .modal-footer button,
+.kanban-board .modal-footer button:focus,
+.kanban-board .modal-footer button:active {
+    background-color: #5e35b1;
+    color: #fff;
+    border: transparent;
+}
+
+.kanban-board .modal-header button:focus {
+    background-color: transparent;
+}
+
+.kanban-board .modal-header .modal-title {
+    color: #5e35b1;
+}
+
+.kanban-board h6 {
+    font-size: 20px;
+    background-color: #5e35b1;
+    vertical-align: center;
+    height: 40px;
+    border-radius: 5px;
+    padding-top: 7px;
+    color: #fff;
+}
+
+.kanban-board .cards .card {
+    width: 90%;
+    height: auto;
+    margin-left: 18px;
+    border-radius: 5px;
+    margin-bottom: 0;
+    background-color: #ede7f6;
+}
+
+.kanban-board .todo .cards .card {
+    border-left: 5px solid red;
+    border-left: 5px solid red;
+}
+
+.kanban-board .inprogress .cards .card {
+    border-left: 5px solid orange;
+}
+
+.kanban-board .completed .cards .card {
+    border-left: 5px solid green;
+}
+
+.kanban-board .cards .card .card_title {
+    font-size: 18px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: #311b92;
+}
+
+.kanban-board .cards .card .card_description {
+    font-size: 14px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: #7c4dff;
+}
+
+.kanban-board .cards .card .operations i {
+    font-size: 16px;
+    color: #311b92;
+}
+
+.kanban-board .cards .card .operations {
+    text-align: right;
+    padding-right: 5px;
+}
+
