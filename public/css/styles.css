@@ -91,7 +91,6 @@
 }
 
 .kanban-board .cards .card .card_title {
-    padding-top: 5px;
     font-size: 18px;
     text-align: left;
     padding-left: 10px;
@@ -108,25 +107,26 @@
 }
 
 .kanban-board .cards .card .operations i {
-    font-size: 16px;
+    font-size: 18px;
     color: #311b92;
+    margin-top: 5px;
 }
 
-.kanban-board .cards .card .operations .state {
+.kanban-board .cards .card .states .state {
     font-size: 16px;
     color: #fff;
     font-weight: bold;
     text-align: center;
 }
 
-.kanban-board .cards .card .operations .state {
+.kanban-board .cards .card .states .state {
     background-color: #311b92;
     width: 20px;
     height: 23px;
     border-radius: 5px;
 }
 
-.kanban-board .cards .card .operations .state:hover,
+.kanban-board .cards .card .states .state:hover,
 .kanban-board .cards .card .operations i:hover {
     color: #ffab40;
 }
@@ -140,4 +140,10 @@
 .kanban-board .cards .card .operations {
     text-align: right;
     padding-right: 5px;
+}
+
+.kanban-board .cards .card .states {
+    text-align: right;
+    padding-right: 5px;
+    margin-bottom: 5px;
 }

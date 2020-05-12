@@ -20,7 +20,7 @@ $('.edit-card').click(function() {
     })
 })
 
-$('.kanban-board .operations .state').click(function() {
+$('.kanban-board .states .state').click(function() {
     var status = $(this).data('status')
     var card_id = $(this).parent().data('card-id')
     console.log(card_id)
