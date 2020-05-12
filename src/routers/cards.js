@@ -72,10 +72,12 @@ router.get('/kanban-board', auth, async (req, res) => {
     }
 })
 
+// Fetch card through ajax.
 router.get('/fetch/card', auth, async (req, res) => {
     const card_id = req.query.id
     try {
         const card = await Cards.findById(card_id)
+        res.status(301).redirect('/kanban-board')
         res.send({
             card
         })
@@ -84,6 +86,23 @@ router.get('/fetch/card', auth, async (req, res) => {
     }
 })
 
+// Update card through ajax.
+router.get('/update/card', auth, async (req, res) => {
+    const card_id = req.query.id
+    const status = req.query.status
+    let completed = false
+    if (status === 'done') {
+        completed = true
+    }
+    try {
+        const card = await Cards.findByIdAndUpdate(card_id, {status, completed})
+        res.send({
+            card
+        })
+    } catch (e) {
+        res.render('kanban')
+    }
+})
 
 // Register helper for handlebars.
 hbs.registerHelper('cardsStatus', function(card_status, status, options) {
