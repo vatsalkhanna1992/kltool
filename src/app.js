@@ -4,6 +4,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const userRouter = require('./routers/users')
 const cardRouter = require('./routers/cards')
+const noteRouter = require('./routers/notes')
 require('./utils/dbconnect')
 const cookieParser = require('cookie-parser')
 const auth = require('./middleware/auth')
@@ -33,6 +34,7 @@ app.use('/css', express.static(path.join(__dirname, '../node_modules/materialize
 app.use('/js', express.static(path.join(__dirname, '../node_modules/materialize-css/dist/js')))
 app.use(userRouter)
 app.use(cardRouter)
+app.use(noteRouter)
 
 // Set views engine to use handlebars.
 app.set('view engine', 'hbs')

@@ -20,10 +20,10 @@ $('.edit-card').click(function() {
     })
 })
 
+// Update card through ajax.
 $('.kanban-board .states .state').click(function() {
     var status = $(this).data('status')
     var card_id = $(this).parent().data('card-id')
-    console.log(card_id)
     $.ajax({
         url: '/update/card',
         method: 'GET',
@@ -33,6 +33,22 @@ $('.kanban-board .states .state').click(function() {
         },
         success: function(result) {
             window.location.href = "/kanban-board";
+        }
+    })
+})
+
+// Show note through ajax.
+$('.note-board .notes .note-link').click(function(e) {
+    e.preventDefault()
+    var note_id = $(this).data('note-id')
+    $.ajax({
+        url: '/fetch/note',
+        data: {
+            id: note_id
+        },
+        success: function(result) {
+            $('#note-title').val(result.note.title).focus().blur()
+            $('.fr-element').html(result.note.description).focus().blur()
         }
     })
 })

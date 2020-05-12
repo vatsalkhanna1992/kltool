@@ -112,28 +112,4 @@ hbs.registerHelper('cardsStatus', function(card_status, status, options) {
     }
 })
 
-/* hbs.registerHelper('todoCards', function(status, options) {
-    if (status === 'todo') {
-        return options.fn(this)
-    } else {
-        options.inverse(this)
-    }
-})
-
-hbs.registerHelper('inProgressCards', function(status, options) {
-    if (status === 'in_progress') {
-        return options.fn(this)
-    } else {
-        options.inverse(this)
-    }
-})
-
-hbs.registerHelper('completedCards', function(status, options) {
-    if (status === 'done') {
-        return options.fn(this)
-    } else {
-        options.inverse(this)
-    }
-}) */
-
 module.exports = router

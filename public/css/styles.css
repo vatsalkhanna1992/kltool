@@ -70,9 +70,7 @@
 }
 
 .kanban-board .cards .card {
-    width: 90%;
     height: auto;
-    margin-left: 18px;
     border-radius: 5px;
     margin-bottom: 0;
     background-color: #ede7f6;
@@ -147,4 +145,20 @@
 .inprogress .in_progress,
 .completed .done {
     color: #ffd8a6 !important;
+}
+
+#note-description {
+    width: 100%;
+    height: auto;
+    border: 1px solid grey;
+    padding-left: 20px;
+}
+
+.ce-toolbar__plus {
+    margin-left: 10px;
+}
+
+#note-description ul,
+#note-description ul li {
+    list-style-type: unset;
 }

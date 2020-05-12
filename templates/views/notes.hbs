@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Notes | Kltool
+        </title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   </head>
+    <body class="note-board">
+        <div class="container">
+            {{>header}}
+            <div class="row">
+                <div class="col s12">
+                    <h5 class="page_title">Notes <a title="Add Note" type="button" data-toggle="modal" data-target="#addNote"><i class="material-icons dp48">note_add</i></a></h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="notes">
+                        {{#each notes}}
+                            {{>note}}
+                        {{/each}}
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <form method="post" action="/add/note">
+                        <div class="input-field">
+                            <input type="text" name="note_title" id="note-title" required />
+                            <label>Title</label>
+                        </div>
+                        <div>
+                            <textarea name="note_description" id="note-description" required<></textarea>
+                        </div>
+                        <button type="submit">Save note</button>
+                    </form>
+                            {{!-- <div>
+                                <p id="note-description" name="note-description"></p>
+                            </div> --}}
+                    {{!-- <div class="input-field">
+                        <textarea name="note-description" id="note-description" class="materialize-textarea" rows="3"></textarea>
+                        <label class="active">Description</label>
+                    </div> --}}
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="addNote">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h5 class="modal-title">New Note</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-field">
+                                <input type="text" name="note_title" required />
+                                <label>Task</label>
+                            </div>
+                            <div class="input-field">
+                                <textarea name="note_description" class="materialize-textarea"></textarea>
+                                <label>Description</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn">Add Note</button>
+                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{>general_css_js}}
+        {{>materialize}}
+
+        <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+        <script>new FroalaEditor('textarea#note-description', {toolbarInline: true});</script>
+    </body>
+</html>
