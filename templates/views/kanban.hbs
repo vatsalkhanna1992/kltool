@@ -11,7 +11,7 @@
             {{>header}}
             <div class="row">
                 <div class="col s12">
-                    <h5 class="page_title">Kanban Board <button title="Add Card" type="button" data-toggle="modal" data-target="#addCard">+</button></h5>
+                    <h5 class="page_title">Board <button title="Add Card" type="button" data-toggle="modal" data-target="#addCard">+</button></h5>
                 </div>
             </div>
             <div class="row">
@@ -86,7 +86,7 @@
         <div class="modal" tabindex="-1" role="dialog" id="editCard">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form method="post" action="/add/card">
+                    <form method="post" action="/update/card">
                         <div class="modal-header">
                             <h5 class="modal-title">Edit Card</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -94,6 +94,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div class="input-field">
+                                <input type="hidden" id="card_id" name="card_id" />
+                            </div>
                             <div class="input-field">
                                 <input type="text" id="card_title" name="update_card_title" required />
                                 <label>Task</label>
@@ -113,7 +116,6 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn">Update Card</button>
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
                         </div>
                     </form>
                 </div>

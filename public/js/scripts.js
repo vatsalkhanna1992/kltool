@@ -6,6 +6,7 @@ $(document).ready(function(){
 
 $('.edit-card').click(function() {
     var card_id = $(this).data('card-id')
+    $('#editCard #card_id').val(card_id)
     $.ajax({
         url: '/fetch/card',
         data: {
