@@ -28,7 +28,6 @@ router.post('/add/card', auth, async (req, res) => {
 
 // Update card on Kanban Board.
 router.post('/update/card', auth, async (req, res) => {
-    //const username = req.user.username
     const title = req.body.update_card_title
     const description = req.body.update_card_description
     const status = req.body.update_card_status
@@ -43,6 +42,19 @@ router.post('/update/card', auth, async (req, res) => {
     } catch (e) {
         res.status(400).send({
             error: 'Card cannot be updated.'
+        })
+    }
+})
+
+// Delete card on Kanban Board.
+router.get('/remove/card', auth, async (req, res) => {
+    const card_id = req.query.id
+    try {
+        await Cards.findByIdAndDelete(card_id)
+        res.status(301).redirect('/kanban-board')
+    } catch (e) {
+        res.status(400).send({
+            error: 'Card cannot be deleted.'
         })
     }
 })

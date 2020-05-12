@@ -4,7 +4,7 @@
         <p class="card_description">{{ this.description }}</p>
         <div class="operations">
             <a type="button" class="edit-card" data-toggle="modal" data-target="#editCard" href="/edit/card" title="Edit Card" data-card-id={{this._id}}><i class="material-icons dp48">edit</i></a>
-            <a type="button" class="remove-card" data-toggle="modal" data-target="#" href="/remove/card" title="Remove Card" data-card-id={{this._id}}><i class="material-icons dp48">delete</i></a>
+            <a type="button" class="remove-card" href="/remove/card?id={{this._id}}" title="Remove Card"><i class="material-icons dp48">delete</i></a>
         </div>
     </div>
 </div>
