@@ -112,13 +112,6 @@
     color: #311b92;
 }
 
-
-/* .todo.todo,
-.in_progress.in_progress,
-.done.done {
-    color: #ffd8a6;
-} */
-
 .kanban-board .cards .card .operations .state {
     font-size: 16px;
     color: #fff;
@@ -133,12 +126,18 @@
     border-radius: 5px;
 }
 
-.kanban-board .cards .card .operations .state.active {
-    color: #ffd8a6;
+.kanban-board .cards .card .operations .state:hover,
+.kanban-board .cards .card .operations i:hover {
+    color: #ffab40;
+}
+
+.todo .todo,
+.inprogress .in_progress,
+.completed .done {
+    color: #ffd8a6 !important;
 }
 
 .kanban-board .cards .card .operations {
     text-align: right;
     padding-right: 5px;
 }
-
