@@ -48,6 +48,7 @@
     background-color: #5e35b1;
     color: #fff;
     border: transparent;
+    border-radius: 10px;
 }
 
 .kanban-board .modal-header button:focus {
