@@ -32,6 +32,7 @@ app.use('/js', express.static(path.join(__dirname, '../node_modules/bootstrap-ma
 app.use('/css', express.static(path.join(__dirname, '../node_modules/bootstrap-material-design/dist/css')))
 app.use('/css', express.static(path.join(__dirname, '../node_modules/materialize-css/dist/css')))
 app.use('/js', express.static(path.join(__dirname, '../node_modules/materialize-css/dist/js')))
+app.use('/quill', express.static(path.join(__dirname, '../node_modules/quill/dist')))
 app.use(userRouter)
 app.use(cardRouter)
 app.use(noteRouter)

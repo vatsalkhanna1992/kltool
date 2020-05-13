@@ -1,3 +1,23 @@
+.index-heading,
+.logo a,
+p {
+    color: #5e35b1;
+}
+
+p a {
+    color: #ffab40;
+    text-decoration: none;
+}
+
+p a:hover {
+    color: #ffab40;
+    text-decoration: none;
+}
+
+.dashboard p {
+    color: #fff;
+}
+
 .error {
     color: red;
 }
@@ -10,10 +30,6 @@
     font-size: 24px;
 }
 
-.logo a {
-    color: #5e35b1;
-}
-
 .kanban-board .col.s3 {
     text-align: center;
 }
@@ -21,13 +37,48 @@
 .kanban-board h5 {
     text-align: center;
 }
+
 .modal {
     background-color: transparent !important;
     max-height: unset !important;
     width: unset !important;
 }
+
 .message {
     color: green;
+}
+
+.input-field>label {
+    color: #7c4dff !important;
+}
+
+input[type="text"],
+input[type="password"] {
+    color: #5e35b1 !important;
+    border-bottom: 1px solid #7c4dff !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus{
+    border-bottom: 1px solid #5e35b1 !important;
+    box-shadow: 0 1px 0 0 #5e35b1 !important;
+    color: #5e35b1 !important;
+}
+
+.input-field label:focus,
+.input-field label.active {
+    color: #5e35b1 !important;
+}
+
+.profile button,
+.kltool-button {
+    background-color: #5e35b1 !important;
+    color: #ffd8a6 !important;
+}
+
+.profile button:hover,
+.kltool-button:hover {
+    color: #ffab40 !important;
 }
 
 .kanban-board h5.page_title {
@@ -147,18 +198,82 @@
     color: #ffd8a6 !important;
 }
 
-#note-description {
+.note-board h5 {
+    text-align: center;
+}
+
+.note-board h5 i,
+.note-board h5 span {
+    color: #5e35b1;
+}
+
+.note-board h5 i {
+    font-size: 26px;
+}
+
+.note-board .note {
+    margin: 0 auto;
+    background-color: #fff;
+    min-height: 50px;
+    padding: 10px;
+    border: 2px solid #5e35b1;
+    border-bottom: transparent;
+    border-radius: 5px;
+    width: 95%;
+    box-shadow: 0 -3px 5px grey;
+}
+
+.note-board .note:last-child {
+    border-bottom: 2px solid #5e35b1;
+}
+
+.note-board .note label a {
+    color: #5e35b1;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.note-board .note:hover,
+.note-board .note.selected {
+    font-weight: bold;
+    cursor: pointer;
     width: 100%;
-    height: auto;
-    border: 1px solid grey;
-    padding-left: 20px;
+    border-bottom: 2px solid #5e35b1;
 }
 
-.ce-toolbar__plus {
-    margin-left: 10px;
+.note-board .note.selected {
+    background-color: #ffd8a6;
 }
 
-#note-description ul,
-#note-description ul li {
-    list-style-type: unset;
+.notes {
+    overflow-y: scroll;
+    height: 500px;
+}
+
+#note_description {
+    height: 400px;
+}
+
+#note_description strong{
+    font-weight: bolder;
+}
+
+.checkbox-purple[type="checkbox"]:checked+span:not(.lever):before {
+    border-right: 2px solid #5e35b1;
+    border-bottom: 2px solid #5e35b1;
+}
+
+.checkbox-purple[type="checkbox"]+span:not(.lever):before,
+.checkbox-purple[type="checkbox"]:not(.filled-in)+span:not(.lever):after {
+    border: 2px solid #5e35b1;
+    border-radius: 10px;
+}
+
+p.note_title {
+    word-wrap: break-word;
+    max-width: 180px;
+}
+
+.note-board .delete-note {
+    display: none;
 }

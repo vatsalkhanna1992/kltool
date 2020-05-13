@@ -1,7 +1,7 @@
 $ = jQuery
 
 $(document).ready(function(){
-    $('select').formSelect();
+    $('.kanban-board select').formSelect();
 })
 
 $('.edit-card').click(function() {
@@ -38,7 +38,7 @@ $('.kanban-board .states .state').click(function() {
 })
 
 // Show note through ajax.
-$('.note-board .notes .note-link').click(function(e) {
+$('.note-board .notes .note').click(function(e) {
     e.preventDefault()
     var note_id = $(this).data('note-id')
     $.ajax({
@@ -47,8 +47,82 @@ $('.note-board .notes .note-link').click(function(e) {
             id: note_id
         },
         success: function(result) {
-            $('#note-title').val(result.note.title).focus().blur()
-            $('.fr-element').html(result.note.description).focus().blur()
+            $('#note_title').val(result.note.title).focus().blur()
+            $('.message').text('')
+            $('.ql-editor').html(result.note.description)
+            $('form.add-note').attr('data-note-id', result.note._id)
+            $('form.add-note button.save-note').text('Update note')
         }
     })
+})
+
+// Add note through ajax.
+$('form.add-note').submit(function() {
+    var note_title = $('#note_title').val()
+    var note_description = $('#note_description .ql-editor').html()
+    if ($(this).data('note-id')) {
+        var note_id = $(this).data('note-id')
+        $.ajax({
+            url: '/update/note',
+            method: 'patch',
+            data: {
+                note_id,
+                note_title,
+                note_description
+            },
+            success: function(response) {
+                if (response.note) {
+                    window.location.href = '/notes?message=Note updated!';
+                }
+            }
+        })
+        return
+    }
+    $.ajax({
+        url: '/add/note',
+        method: 'post',
+        data: {
+            note_title,
+            note_description
+        },
+        success: function(response) {
+            if (response.note) {
+                window.location.href = '/notes?message=Note added!';
+            }
+        }
+    })
+})
+
+$('.note-board .note').click(function() {
+    $('.note-board .note').each(function() {
+        $(this).removeClass('selected')
+    })
+    $(this).addClass('selected')
+    $('.note-board .delete-note').show()
+})
+
+// Delete a note using ajax.
+$('a.delete-note').click(function() {
+    var id = $('.note-board .notes .note.selected').data('note-id')
+    if (id) {
+        var confirmation = confirm('Are you sure you want to delete this note?')
+        if (confirmation) {
+            var id = $('.note-board .notes .note.selected').data('note-id')
+            $.ajax({
+                url: '/delete/note',
+                method: 'delete',
+                data: {
+                    id
+                },
+                success: function(response) {
+                    if (response.message) {
+                        window.location.href = '/notes?message=Note deleted!';
+                    }
+                }
+            })
+        }
+    }
+    else {
+        alert('Please select a note to delete.')
+    }
 })

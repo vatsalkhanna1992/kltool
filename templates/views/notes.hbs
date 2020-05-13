@@ -11,7 +11,12 @@
             {{>header}}
             <div class="row">
                 <div class="col s12">
-                    <h5 class="page_title">Notes <a title="Add Note" type="button" data-toggle="modal" data-target="#addNote"><i class="material-icons dp48">note_add</i></a></h5>
+                    <h5 class="page_title">
+                        <span>Notes</span>
+                        <a href="/notes" title="Add Note"><i class="material-icons dp48">note_add</i></a>
+                        <a href="" class="delete-note" title="Delete Notes"><i class="material-icons dp48">delete</i></a>
+                    </h5>
+                    <div class="message">{{message}}</div>
                 </div>
             </div>
             <div class="row">
@@ -23,59 +28,24 @@
                     </div>
                 </div>
                 <div class="col-sm-9">
-                    <form method="post" action="/add/note">
-                        <div class="input-field">
-                            <input type="text" name="note_title" id="note-title" required />
-                            <label>Title</label>
-                        </div>
-                        <div>
-                            <textarea name="note_description" id="note-description" required<></textarea>
-                        </div>
-                        <button type="submit">Save note</button>
-                    </form>
-                            {{!-- <div>
-                                <p id="note-description" name="note-description"></p>
-                            </div> --}}
-                    {{!-- <div class="input-field">
-                        <textarea name="note-description" id="note-description" class="materialize-textarea" rows="3"></textarea>
-                        <label class="active">Description</label>
-                    </div> --}}
-                </div>
-            </div>
-        </div>
-        <div class="modal" tabindex="-1" role="dialog" id="addNote">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">
-                            <h5 class="modal-title">New Note</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="input-field">
-                                <input type="text" name="note_title" required />
-                                <label>Task</label>
-                            </div>
-                            <div class="input-field">
-                                <textarea name="note_description" class="materialize-textarea"></textarea>
-                                <label>Description</label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn">Add Note</button>
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                        </div>
+                    <form class="add-note">
+                        <input type="text" name="note_title" id="note_title" placeholder="Note title" required />
+                        <div id="note_description" name="note_description"></div>
+                        <p></p>
+                        <button type="submit" class="save-note btn deep-purple darken-1 right">Save note</button>
                     </form>
                 </div>
             </div>
         </div>
         {{>general_css_js}}
         {{>materialize}}
-
-        <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
-        <script>new FroalaEditor('textarea#note-description', {toolbarInline: true});</script>
+        <link href="/quill/quill.snow.css" rel="stylesheet">
+        <script src="/quill/quill.min.js"></script>
+        <script>
+            var quill = new Quill('#note_description', {
+                placeholder: 'Write a note...',
+                theme: 'snow'
+            });
+        </script>
     </body>
 </html>

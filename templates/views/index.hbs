@@ -7,11 +7,11 @@
             User Login | Kltool
         </title>
     </head>
-    <body>
+    <body class="login-page">
         <div class="container">
             <form method="post" action="/user/login">
                 <div class="row">
-                    <h4>
+                    <h4 class="index-heading">
                         Welcome to Kltool!
                     </h4>
                 </div>
@@ -20,18 +20,18 @@
                 </div>
                 <div class="row">
                     <div class="input-field">
-                        <input type="text" name="username" size="30" required>
+                        <input type="text" name="username" size="50" required>
                         <label>Username</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field">
-                        <input type="password" name="password" size="30" required>
+                        <input type="password" name="password" size="50" required>
                         <label>Password</label>
                     </div>
                 </div>
                 <div class="row">
-                    <button type="submit" class="btn">Login</button>
+                    <button type="submit" class="btn kltool-button">Login</button>
                 </div>
                 <div class="row">
                     <p> Don't have an account? <a href="/register">Sign up</a></p>
