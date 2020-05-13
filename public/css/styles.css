@@ -53,13 +53,16 @@ p a:hover {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+textarea.materialize-textarea,
+.input-field .select-wrapper span {
     color: #5e35b1 !important;
     border-bottom: 1px solid #7c4dff !important;
 }
 
 input[type="text"]:focus,
-input[type="password"]:focus{
+input[type="password"]:focus,
+textarea.materialize-textarea:focus {
     border-bottom: 1px solid #5e35b1 !important;
     box-shadow: 0 1px 0 0 #5e35b1 !important;
     color: #5e35b1 !important;
