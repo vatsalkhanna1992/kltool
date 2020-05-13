@@ -218,13 +218,14 @@ textarea.materialize-textarea:focus {
 .note-board .note {
     margin: 0 auto;
     background-color: #fff;
-    height: 50px;
+    height: 70px;
     padding: 10px;
     //border: 2px solid #5e35b1;
     //border-bottom: transparent;
     //border-radius: 5px;
-    width: 95%;
+    width: 100%;
     //box-shadow: 0 -3px 5px grey;
+    border-bottom: 1px solid #5e35b1;
 }
 
 .note-board .note:last-child {
