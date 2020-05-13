@@ -1,12 +1,12 @@
 const express = require('express')
 const Users = require('../models/users')
 const auth = require('../middleware/auth')
+const bcrypt = require('bcryptjs')
 
 const router = new express.Router()
 
 // Get user profile.
 router.get('/user/profile', auth, async (req, res) => {
-    //res.send(req.user)
     res.render('profile', {
         username: req.user.username,
         firstName: req.user.first_name,
@@ -15,6 +15,10 @@ router.get('/user/profile', auth, async (req, res) => {
 })
 
 router.get('/update/profile', auth, async (req, res) => {
+    res.redirect('/user/profile')
+})
+
+router.get('/update/password', auth, async (req, res) => {
     res.redirect('/user/profile')
 })
 
@@ -34,6 +38,57 @@ router.post('/update/profile', auth, async (req, res) => {
         lastName: updated_user.last_name,
         message_profile: 'Profile Updated Successfully.'
     })
+})
+
+// Update user password.
+router.post('/update/password', auth, async (req, res) => {
+    old_password = req.body.old_password
+    password = req.body.password
+    confirm_password = req.body.confirm_password
+    const isMatch = await bcrypt.compare(old_password, req.user.password)
+    if (!isMatch) {
+        res.render('profile', {
+            username: req.user.username,
+            firstName: req.user.first_name,
+            lastName: req.user.last_name,
+            error: 'Invalid Old Password.'
+        })
+        return
+    }
+    if (password !== confirm_password) {
+        res.render('profile', {
+            username: req.user.username,
+            firstName: req.user.first_name,
+            lastName: req.user.last_name,
+            error: "New password doesn't match."
+        })
+        return
+    }
+    try {
+        const hashed_password = await req.user.hashPassword(password)
+        const updated_user = await Users.findByIdAndUpdate(req.user._id, {
+            password: hashed_password
+        }, {new: true, runValidators: true})
+        if (!updated_user) {
+            res.render('profile', {
+                username: req.user.username,
+                firstName: updated_user.first_name,
+                lastName: updated_user.last_name,
+                error: 'User cannot be updated.'
+            })
+            return
+        }
+        res.render('profile', {
+            username: req.user.username,
+            firstName: updated_user.first_name,
+            lastName: updated_user.last_name,
+            message_password: 'Password Updated Successfully.'
+        })
+    } catch(e) {
+        res.send({
+            error: e
+        })
+    }
 })
 
 // Redirect to home page if user tries to visit this url.

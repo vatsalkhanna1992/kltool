@@ -66,7 +66,9 @@ input[type="password"]:focus{
 }
 
 .input-field label:focus,
-.input-field label.active {
+.input-field label.active,
+.profile label:focus,
+.profile label.active {
     color: #5e35b1 !important;
 }
 

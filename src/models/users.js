@@ -55,6 +55,12 @@ userSchema.methods.generateAuthToken = async function() {
     return token
 }
 
+// Hash password.
+userSchema.methods.hashPassword = async function(password) {
+    hashed_password = await bcrypt.hash(password, 8)
+    return hashed_password
+}
+
 // Check credentials provided on login screen.
 userSchema.statics.findByCredentials = async (username, password) => {
     const user = await Users.findOne({ username })
