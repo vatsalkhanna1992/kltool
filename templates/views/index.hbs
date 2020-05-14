@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        {{>general_css_js}}
-        {{>materialize}}
         <title>
             User Login | Kltool
         </title>
+        {{>general_css_js}}
+        {{>materialize}}
     </head>
     <body class="login-page">
         <div class="container">
@@ -17,6 +17,9 @@
                 </div>
                 <div class="row">
                     <div class="error">{{error}}</div>
+                </div>
+                <div class="row">
+                    <div class="message">{{message}}</div>
                 </div>
                 <div class="row">
                     <div class="input-field">
@@ -41,6 +44,7 @@
                 </div>
             </form>
         </div>
+        <script src="/js/scripts.js"></script>
     </body>
     {{>footer}}
 </html>

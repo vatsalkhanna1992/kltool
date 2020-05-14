@@ -5,6 +5,8 @@
             Notes | Kltool
         </title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        {{>general_css_js}}
+        {{>materialize}}
    </head>
     <body class="note-board">
         <div class="container">
@@ -37,8 +39,6 @@
                 </div>
             </div>
         </div>
-        {{>general_css_js}}
-        {{>materialize}}
         <link href="/quill/quill.snow.css" rel="stylesheet">
         <script src="/quill/quill.min.js"></script>
         <script>
@@ -47,6 +47,6 @@
                 theme: 'snow'
             });
         </script>
+        <script src="/js/scripts.js"></script>
     </body>
-    {{>footer}}
 </html>

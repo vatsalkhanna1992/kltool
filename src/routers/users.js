@@ -214,11 +214,10 @@ router.patch('/user/:id', async (req, res) => {
 // Delete a user.
 router.delete('/user/delete', auth, async (req, res) => {
     try {
-        console.log(req.user)
-        //await Users.findByIdAndDelete(req.user.id)
-        /* res.render('index', {
+        await Users.findByIdAndDelete(req.user.id)
+        res.send({
             message: 'Your account is deleted. Thank you for using Kltool.'
-        }) */
+        })
     } catch (e) {
         res.status(400).send(e)
     }

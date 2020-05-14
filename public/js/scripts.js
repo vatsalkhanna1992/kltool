@@ -126,3 +126,18 @@ $('a.delete-note').click(function() {
         alert('Please select a note to delete.')
     }
 })
+
+// Delete user.
+$('.header .delete-account').click(function(e) {
+    e.preventDefault();
+    var confirmation = confirm('Are you sure you want to delete this note?');
+    if (confirmation) {
+        $.ajax({
+            url: '/user/delete',
+            method: 'delete',
+            success: function (response) {
+                window.location.href = '/?message=' + response.message;
+            }
+        })
+    }
+})
