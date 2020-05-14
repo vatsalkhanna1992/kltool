@@ -263,7 +263,6 @@ router.post('/forgot-password', async (req, res) => {
     try {
         const hash_password = await Users.hashPassword(new_password)
         const updated_user = await Users.findOneAndUpdate({ username }, { password: hash_password })
-        console.log(updated_user)
         if (updated_user) {
             res.render('forgot-password', {
                 message: 'Your new password has been sent to your email address. Please use that for logging in.'
