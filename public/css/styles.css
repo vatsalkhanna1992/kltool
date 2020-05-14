@@ -4,7 +4,8 @@
 }
 
 p a,
-.message a {
+.message a,
+.error a {
     color: #c36f04;
     text-decoration: none;
 }
@@ -284,4 +285,12 @@ p.note_title {
 
 .note-board .delete-note {
     display: none;
+}
+
+footer {
+    background-color: #5e35b1;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #ffab40;
 }

@@ -157,7 +157,24 @@ router.post('/user/registration', async (req, res) => {
             lastName: req.body.last_name
         })
     } catch (e) {
-        res.status(400).send(e)
+        const err = e.errors
+        if (err) {
+            if (err.username) {
+                res.status(400).render('register', {
+                    error: err.username.message
+                })
+                return
+            }
+            if (err.password) {
+                res.status(400).render('register', {
+                    error: 'Password length should be greater than 8.'
+                })
+                return
+            }
+        }
+        res.status(400).render('register', {
+            error: 'User already exists. Login <a href="/">here</a>'
+        })
     }
 })
 
@@ -195,15 +212,13 @@ router.patch('/user/:id', async (req, res) => {
 })
 
 // Delete a user.
-router.delete('/user/:id', async (req, res) => {
+router.delete('/user/delete', auth, async (req, res) => {
     try {
-        const user = await Users.findByIdAndDelete(req.params.id)
-        if (!user) {
-            return res.status(404).send({
-                error: 'User not found!'
-            })
-        }
-        res.send(user)
+        console.log(req.user)
+        //await Users.findByIdAndDelete(req.user.id)
+        /* res.render('index', {
+            message: 'Your account is deleted. Thank you for using Kltool.'
+        }) */
     } catch (e) {
         res.status(400).send(e)
     }
