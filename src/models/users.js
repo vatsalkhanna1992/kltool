@@ -61,6 +61,17 @@ userSchema.methods.hashPassword = async function(password) {
     return hashed_password
 }
 
+// Hide private data. This will be automatically called as toJSON is used.
+userSchema.methods.toJSON = function() {
+    const user = this
+    const userObject = user.toObject()
+
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject
+}
+
 // Check credentials provided on login screen.
 userSchema.statics.findByCredentials = async (username, password) => {
     const user = await Users.findOne({ username })

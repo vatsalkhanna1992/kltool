@@ -237,10 +237,12 @@ textarea.materialize-textarea:focus {
     text-decoration: none;
     font-size: 16px;
 }
+.note-board .note:hover{
+    cursor: pointer;
+    border-bottom: 2px solid #5e35b1;
+}
 
-.note-board .note:hover,
 .note-board .note.selected {
-    font-weight: bold;
     cursor: pointer;
     border-bottom: 2px solid #5e35b1;
 }
