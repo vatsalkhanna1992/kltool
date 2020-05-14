@@ -56,7 +56,7 @@ userSchema.methods.generateAuthToken = async function() {
 }
 
 // Hash password.
-userSchema.methods.hashPassword = async function(password) {
+userSchema.statics.hashPassword = async function(password) {
     hashed_password = await bcrypt.hash(password, 8)
     return hashed_password
 }
@@ -84,6 +84,26 @@ userSchema.statics.findByCredentials = async (username, password) => {
         throw new Error('Unable to login.')
     }
     return user
+}
+
+// Check if the username is valid.
+userSchema.statics.isValidUsername = async (username) => {
+    const user = await Users.findOne({ username })
+
+    if (!user) {
+        return false
+    }
+
+    return true
+}
+
+// Generate random string.
+userSchema.statics.generateRandomString = function(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return result;
 }
 
 // Hash password before saving.

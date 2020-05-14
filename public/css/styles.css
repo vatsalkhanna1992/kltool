@@ -3,8 +3,9 @@
     color: #5e35b1;
 }
 
-p a {
-    color: #ffab40;
+p a,
+.message a {
+    color: #c36f04;
     text-decoration: none;
 }
 

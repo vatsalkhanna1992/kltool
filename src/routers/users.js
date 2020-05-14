@@ -2,6 +2,7 @@ const express = require('express')
 const Users = require('../models/users')
 const auth = require('../middleware/auth')
 const bcrypt = require('bcryptjs')
+const { sendGreetingMail } = require('../emails/account')
 
 const router = new express.Router()
 
@@ -51,7 +52,7 @@ router.post('/update/password', auth, async (req, res) => {
             username: req.user.username,
             firstName: req.user.first_name,
             lastName: req.user.last_name,
-            error: 'Invalid Old Password.'
+            error: 'Invalid Current Password.'
         })
         return
     }
@@ -65,7 +66,7 @@ router.post('/update/password', auth, async (req, res) => {
         return
     }
     try {
-        const hashed_password = await req.user.hashPassword(password)
+        const hashed_password = await Users.hashPassword(password)
         const updated_user = await Users.findByIdAndUpdate(req.user._id, {
             password: hashed_password
         }, {new: true, runValidators: true})
@@ -144,6 +145,11 @@ router.post('/user/registration', async (req, res) => {
         await user.save()
         const token = await user.generateAuthToken()
         res.cookie('auth', token)
+        try {
+            await sendGreetingMail(user.username, user.first_name)
+        } catch(e) {
+            console.log("Mail cannot be sent.")
+        }
         res.status(201)
         //res.send({ user, token})
         res.render('dashboard', {
@@ -219,7 +225,7 @@ router.post('/user/logout', auth, async (req, res) => {
     }
 })
 
-// Logout from all devices
+// Logout from all devices.
 router.post('/user/logout-all', auth, async (req, res) => {
     try {
         req.user.tokens = []
@@ -230,6 +236,44 @@ router.post('/user/logout-all', auth, async (req, res) => {
         res.redirect('/')
     } catch (e) {
         res.status(500).send()
+    }
+})
+
+// Forgot password.
+router.post('/forgot-password', async (req, res) => {
+    const username = req.body.username
+    let isValid = false
+    try {
+        isValid = await Users.isValidUsername(username)
+    } catch (e) {
+        res.send(500).render('forgot-password', {
+            error: 'Internal server error.',
+        })
+        return
+    }
+    if (!isValid) {
+        res.render('forgot-password', {
+            error: 'Username does not exist.',
+            message: 'No problem! Please click <a href="/register" class="">here</a> to register.'
+        })
+        return
+    }
+    const new_password = Users.generateRandomString(12, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!$%@#');
+    console.log(new_password)
+    try {
+        const hash_password = await Users.hashPassword(new_password)
+        const updated_user = await Users.findOneAndUpdate({ username }, { password: hash_password })
+        console.log(updated_user)
+        if (updated_user) {
+            res.render('forgot-password', {
+                message: 'Your new password has been sent to your email address. Please use that for logging in.'
+            })
+            return
+        }
+    } catch (e) {
+        res.status(500).render('forgot-password', {
+            error: 'Error occurred while sending password to your email address.'
+        })
     }
 })
 

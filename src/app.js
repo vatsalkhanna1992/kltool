@@ -68,6 +68,10 @@ app.get('/register', (req, res) => {
     res.render('register')
 })
 
+app.get('/forgot-password', (req, res) => {
+    res.render('forgot-password')
+})
+
 app.get('*', (req, res) => {
     res.status(404).render('404')
 })
