@@ -11,36 +11,52 @@
         <div class="container">
             <form method="post" action="/user/login">
                 <div class="row">
-                    <h4 class="kltool-text">
-                        Welcome to Kltool!
-                    </h4>
-                </div>
-                <div class="row">
-                    <div class="error">{{error}}</div>
-                </div>
-                <div class="row">
-                    <div class="message">{{message}}</div>
-                </div>
-                <div class="row">
-                    <div class="input-field">
-                        <input type="text" name="username" size="50" required>
-                        <label>Username</label>
+                    <div class="col-12">
+                        <h4 class="kltool-text">
+                            Welcome to Kltool!
+                        </h4>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field">
-                        <input type="password" name="password" size="50" required>
-                        <label>Password</label>
+                    <div class="col-md-6 col-12">
+                        <div class="error">{{error}}</div>
                     </div>
                 </div>
                 <div class="row">
-                    <button type="submit" class="btn kltool-button">Login</button>
+                    <div class="col-lg-6 col-12">
+                        <div class="message">{{message}}</div>
+                    </div>
                 </div>
                 <div class="row">
-                    <p class="kltool-text"> Don't have an account? <a href="/register">Sign up</a></p>
+                    <div class="col-lg-6 col-12">
+                        <div class="input-field">
+                            <input type="text" name="username" size="50" required>
+                            <label>Username</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
-                    <p class="kltool-text"> Forgot Password? <a href="/forgot-password">Click here</a></p>
+                    <div class="col-lg-6 col-12">
+                        <div class="input-field">
+                            <input type="password" name="password" size="50" required>
+                            <label>Password</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <button type="submit" class="btn kltool-button">Login</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <p class="kltool-text"> Don't have an account? <a href="/register">Sign up</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <p class="kltool-text"> Forgot Password? <a href="/forgot-password">Click here</a></p>
+                    </div>
                 </div>
             </form>
         </div>
