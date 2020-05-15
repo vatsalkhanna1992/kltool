@@ -2,7 +2,7 @@ const express = require('express')
 const Users = require('../models/users')
 const auth = require('../middleware/auth')
 const bcrypt = require('bcryptjs')
-const { sendGreetingMail } = require('../emails/account')
+const { sendGreetingMail, sendNewPassword } = require('../emails/account')
 
 const router = new express.Router()
 
@@ -274,6 +274,7 @@ router.post('/forgot-password', async (req, res) => {
     }
     const new_password = Users.generateRandomString(12, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!$%@#');
     console.log(new_password)
+    sendNewPassword(username, new_password)
     try {
         const hash_password = await Users.hashPassword(new_password)
         const updated_user = await Users.findOneAndUpdate({ username }, { password: hash_password })
