@@ -152,7 +152,7 @@ router.post('/user/registration', async (req, res) => {
         }
         res.status(201)
         //res.send({ user, token})
-        res.render('dashboard', {
+        res.send({
             firstName: req.body.first_name,
             lastName: req.body.last_name
         })
@@ -160,19 +160,19 @@ router.post('/user/registration', async (req, res) => {
         const err = e.errors
         if (err) {
             if (err.username) {
-                res.status(400).render('register', {
+                res.status(400).send({
                     error: err.username.message
                 })
                 return
             }
             if (err.password) {
-                res.status(400).render('register', {
+                res.status(400).send({
                     error: 'Password length should be greater than 8.'
                 })
                 return
             }
         }
-        res.status(400).render('register', {
+        res.status(400).send({
             error: 'User already exists. Login <a href="/">here</a>'
         })
     }

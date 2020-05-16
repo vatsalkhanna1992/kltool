@@ -8,17 +8,11 @@ $(document).ready(function(){
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
-  });
+});
 
-  // Initialize collapsible (uncomment the lines below if you use the dropdown variation)
-  // var collapsibleElem = document.querySelector('.collapsible');
-  // var collapsibleInstance = M.Collapsible.init(collapsibleElem, options);
-
-  // Or with jQuery
-
-  $(document).ready(function(){
+$(document).ready(function(){
     $('.sidenav').sidenav();
-  });
+});
 
 $('.edit-card').click(function() {
     var card_id = $(this).parent().data('card-id')
@@ -156,4 +150,29 @@ $('.header .delete-account').click(function(e) {
             }
         })
     }
+})
+
+// Register user using ajax call.
+$('form#register-user').submit(function() {
+    var username = $('[name="username"]').val()
+    var first_name = $('[name="first_name"]').val()
+    var last_name = $('[name="last_name"]').val()
+    var password = $('[name="password"]').val()
+    $.ajax({
+        url: '/user/registration',
+        method: 'POST',
+        data: {
+            username,
+            first_name,
+            last_name,
+            password
+        },
+        success: function(response) {
+            document.location.href = '/';
+        },
+        error: function(e) {
+            $('.error').html(e.responseJSON.error)
+        }
+    })
+    return false
 })
