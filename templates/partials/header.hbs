@@ -1,29 +1,45 @@
 <div class="header">
-    <div class="row left">
-        <div class="col-4">
-            <p class="logo"><a href="/">Kltool</a></p>
-        </div>
-    </div>
-    <div class="row right">
-        <div class="col-xs-3">
-            <p>
-                <a href="/user/profile" class="btn deep-purple lighten-2 kltool-button">My Profile</a>
-            <p>
-        </div>
-        <div class="col-xs-3">
+    <ul id="dropdown" class="dropdown-content">
+        <li>
             <form method="post" action="/user/logout">
-                <button type="submit" class="btn deep-purple lighten-2 kltool-button">Logout</button>
+                <button type="submit" class="deep-purple">Logout from this device</button>
             </form>
-        </div>
-        <div class="col-xs-3">
+        </li>
+        <li>
             <form method="post" action="/user/logout-all">
-                <button type="submit" class="btn deep-purple lighten-2 kltool-button">Logout from all devices</button>
+                <button type="submit" class="deep-purple">Logout from all devices</button>
             </form>
+        </li>
+    </ul>
+
+    <nav>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <div class="nav-wrapper deep-purple">
+            <a href="/" class="brand-logo">Kltool</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/user/profile">My Profile</a></li>
+                <li><a href="" class="delete-account">Delete my account</a></li>
+                <li><a class="dropdown-trigger" href="#!" data-target="dropdown">Logout<i class="material-icons right">arrow_drop_down</i></a></li>
+            </ul>
         </div>
-        <div class="col-xs-3">
-            <p>
-                <a href="" class="delete-account btn deep-purple lighten-2 kltool-button">Delete my account</a>
-            <p>
-        </div>
-    </div>
+    </nav>
+
+  <ul id="slide-out" class="sidenav">
+    <li><a href="/user/profile"><i class="material-icons">person</i>My Profile</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Logout</a></li>
+    {{!-- <li><a class="waves-effect" href="#!">Third Link With Waves</a></li> --}}
+    <li>
+        <form method="post" action="/user/logout">
+            <button type="submit">Logout from this device</button>
+        </form>
+    </li>
+    <li>
+        <form method="post" action="/user/logout-all">
+            <button type="submit">Logout from all devices</button>
+        </form>
+    </li>
+    <li><div class="divider"></div></li>
+    <li><a href="#" class="delete-account">Delete my account</a></li>
+  </ul>
 </div>

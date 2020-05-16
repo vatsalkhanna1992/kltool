@@ -1,6 +1,72 @@
 .logo a,
-.kltool-text {
+.kltool-text,
+.header .sidenav a,
+.header .sidenav form button {
     color: #5e35b1;
+}
+
+.header .sidenav a.subheader {
+    color: rgba(0,0,0,0.54);
+}
+
+.header .sidenav i {
+    color: #ffab40 !important;
+}
+
+.header .brand-logo {
+    padding-left: 10px;
+    color: #ffd8a6;
+}
+
+.header #dropdown button {
+    box-shadow: none;
+    font-size: 1rem;
+    letter-spacing: 0;
+    border: none;
+    color: #ffd8a6;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+    min-height: 60px;
+    line-height: 20px;
+}
+
+.header #dropdown button:hover {
+    color: #ffab40;
+}
+
+.header #dropdown li {
+    border-bottom: 1px solid #fff;
+}
+
+.header .nav-wrapper i {
+    margin-left: 0;
+}
+
+.header a {
+    color: #ffd8a6;
+}
+
+.header a:hover {
+    background-color: #673ab7 !important;
+    color: #ffab40 !important;
+}
+
+.header .sidenav button {
+    color: rgba(0,0,0,0.87);
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 32px;
+    width: 100%;
+}
+
+.header .sidenav button:hover,
+.header .sidenav button:focus {
+    background-color: #673ab7;
+    color: #ffab40;
 }
 
 p a,
@@ -11,6 +77,11 @@ p a,
 }
 
 p a:hover {
+    color: #ffab40;
+    text-decoration: none;
+}
+
+.header a:hover {
     color: #ffab40;
     text-decoration: none;
 }
@@ -76,7 +147,6 @@ textarea.materialize-textarea:focus {
     color: #5e35b1 !important;
 }
 
-.profile button,
 .kltool-button {
     background-color: #5e35b1 !important;
     color: #ffd8a6 !important;
@@ -259,6 +329,14 @@ textarea.materialize-textarea:focus {
     height: 500px;
 }
 
+form.add-note input,
+form.add-note input:focus,
+form.add-note input:hover {
+    color: #000 !important;
+    border-bottom: 1px solid #000 !important;
+    box-shadow: 0 1px 0 0 #000 !important;
+}
+
 #note_description {
     height: 400px;
 }
@@ -292,6 +370,25 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: #ffab40;
-    //height: 100px;
+    color: #ffd8a6;
 }
+
+/* @media only screen and (max-width: 600px) {
+    h4 {
+        font-size: 4rem !important;
+    }
+    body {
+        font-size: 2rem;
+    }
+    body.login-page .input-field input {
+        font-size: 30px;
+        height: 5rem;
+    }
+    body.login-page .input-field label {
+        font-size: 2rem;
+    }
+    .kltool-button {
+        font-size: 30px !important;
+        height: 44px !important;
+    }
+} */
