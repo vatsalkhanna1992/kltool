@@ -20,6 +20,8 @@ const noteSchema = new mongoose.Schema({
     description: {
         type: String
     }
+}, {
+    timestamps: true
 })
 
 const Notes = mongoose.model('Notes', noteSchema)

@@ -31,6 +31,8 @@ const cardSchema = new mongoose.Schema({
         required: true,
         default: false
     }
+}, {
+    timestamps: true
 })
 
 const Cards = mongoose.model('Cards', cardSchema)

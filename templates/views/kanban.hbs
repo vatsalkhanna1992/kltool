@@ -6,6 +6,7 @@
         </title>
         {{>general_css_js}}
         {{>materialize}}
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
     </head>
     <body class="kanban-board">
         <div class="container-fluid">
@@ -18,7 +19,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col x12 s3 todo">
+                <div class="col-sm-12 col-md-4 todo">
                     <h6>To Do</h6>
                     <div class="cards">
                         {{#each cards}}
@@ -28,7 +29,7 @@
                         {{/each}}
                     </div>
                 </div>
-                <div class="col x12 s3 inprogress">
+                <div class="col-sm-12 col-md-4 inprogress">
                     <h6>In Progress</h6>
                     <div class="cards">
                         {{#each cards}}
@@ -38,7 +39,7 @@
                         {{/each}}
                     </div>
                 </div>
-                <div class="col x12 s3 completed">
+                <div class="col-sm-12 col-md-4 completed">
                     <h6>Completed</h6>
                     <div class="cards">
                         {{#each cards}}

@@ -143,6 +143,7 @@ router.post('/user/registration', async (req, res) => {
     const user = new Users(req.body)
     try {
         await user.save()
+        console.log(user)
         const token = await user.generateAuthToken()
         res.cookie('auth', token)
         try {
