@@ -198,12 +198,6 @@ textarea.materialize-textarea:focus {
     color: #fff;
 }
 
-/* @media only screen and (max-width: 767px) {
-    .kanban-board h6 {
-        height: 60px;
-        padding-top: 10px;
-    }
-} */
 .kanban-board .cards .card {
     height: auto;
     border-radius: 5px;
@@ -381,22 +375,14 @@ footer {
     color: #ffd8a6;
 }
 
-/* @media only screen and (max-width: 600px) {
-    h4 {
-        font-size: 4rem !important;
+@media only screen and (max-width: 767px) {
+    .notes {
+        overflow-y: scroll;
+        height: 200px;
+        margin-bottom: 10px;
     }
-    body {
-        font-size: 2rem;
+    .kanban-board .todo,
+    .kanban-board .inprogress {
+        margin-bottom: 10px;
     }
-    body.login-page .input-field input {
-        font-size: 30px;
-        height: 5rem;
-    }
-    body.login-page .input-field label {
-        font-size: 2rem;
-    }
-    .kltool-button {
-        font-size: 30px !important;
-        height: 44px !important;
-    }
-} */
+}

@@ -58,6 +58,11 @@ $('.note-board .notes .note').click(function(e) {
         },
         success: function(result) {
             $('#note_title').val(result.note.title).focus().blur()
+            if ($(window).width() < 768) {
+                $('html, body').animate({
+                    scrollTop: $("#note_title").offset().top
+                }, 1000);
+            }
             $('.message').text('')
             $('.ql-editor').html(result.note.description)
             $('form.add-note').attr('data-note-id', result.note._id)
