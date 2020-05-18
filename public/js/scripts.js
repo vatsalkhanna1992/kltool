@@ -181,3 +181,37 @@ $('form#register-user').submit(function() {
     })
     return false
 })
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData('card', ev.target.id);
+}
+
+function drop(event, element) {
+    console.log(element)
+    event.preventDefault();
+    var data = event.dataTransfer.getData('card');
+    element.appendChild(document.getElementById(data));
+    var card_id = data.substring(5)
+    var status = 'todo'
+    if ($(element).hasClass('inprogress')) {
+        status = 'in_progress'
+    }
+    else if ($(element).hasClass('completed')) {
+        status = 'done'
+    }
+    $.ajax({
+        url: '/update/card',
+        method: 'GET',
+        data: {
+            id: card_id,
+            status: status
+        },
+        success: function(response) {
+            window.location.href = "/kanban-board";
+        }
+    })
+}

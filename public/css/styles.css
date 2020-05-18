@@ -203,18 +203,19 @@ textarea.materialize-textarea:focus {
     border-radius: 5px;
     margin-bottom: 0;
     background-color: #ede7f6;
+    cursor: move;
 }
 
-.kanban-board .todo .cards .card {
+.kanban-board .todo .card {
     border-left: 5px solid red;
     border-left: 5px solid red;
 }
 
-.kanban-board .inprogress .cards .card {
+.kanban-board .inprogress .card {
     border-left: 5px solid orange;
 }
 
-.kanban-board .completed .cards .card {
+.kanban-board .completed .card {
     border-left: 5px solid green;
 }
 
