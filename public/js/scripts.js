@@ -48,7 +48,8 @@ $('.kanban-board .states .state').click(function() {
 })
 
 // Show note through ajax.
-$('.note-board .notes .note').click(function(e) {
+
+$('body').on('click', '.note', function(e) {
     e.preventDefault()
     var note_id = $(this).data('note-id')
     $.ajax({
@@ -108,7 +109,7 @@ $('form.add-note').submit(function() {
     })
 })
 
-$('.note-board .note').click(function() {
+$('body').on('click', '.note', function(e) {
     $('.note-board .note').each(function() {
         $(this).removeClass('selected')
     })
