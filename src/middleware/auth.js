@@ -24,6 +24,11 @@ const auth = async (req, res, next) => {
                     error: 'Please authenticate.'
                 })
             } else {
+                if (req.query.message) {
+                    return res.render('index', {
+                        message: req.query.message
+                    })
+                }
                 return res.render('index')
             }
         }

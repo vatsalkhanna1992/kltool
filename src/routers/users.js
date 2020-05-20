@@ -1,4 +1,6 @@
 const express = require('express')
+const Cards = require('../models/cards')
+const Notes = require('../models/notes')
 const Users = require('../models/users')
 const auth = require('../middleware/auth')
 const bcrypt = require('bcryptjs')
@@ -143,7 +145,6 @@ router.post('/user/registration', async (req, res) => {
     const user = new Users(req.body)
     try {
         await user.save()
-        console.log(user)
         const token = await user.generateAuthToken()
         res.cookie('auth', token)
         try {
@@ -215,6 +216,25 @@ router.patch('/user/:id', async (req, res) => {
 // Delete a user.
 router.delete('/user/delete', auth, async (req, res) => {
     try {
+        const username = req.user.username
+
+        // Delete all cards of this user.
+        const cards = await Cards.find({username})
+        if (cards) {
+            cards.forEach(async (card) => {
+                await Cards.findByIdAndDelete(card.id)
+            })
+        }
+
+        // Delete all notes of this user.
+        const notes = await Notes.find({username})
+        if (notes) {
+            notes.forEach(async (note) => {
+                await Notes.findByIdAndDelete(note.id)
+            })
+        }
+
+        // Delete user.
         await Users.findByIdAndDelete(req.user.id)
         res.send({
             message: 'Your account is deleted. Thank you for using Kltool.'
@@ -274,7 +294,6 @@ router.post('/forgot-password', async (req, res) => {
         return
     }
     const new_password = Users.generateRandomString(12, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!$%@#');
-    console.log(new_password)
     sendNewPassword(username, new_password)
     try {
         const hash_password = await Users.hashPassword(new_password)
