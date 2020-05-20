@@ -9,38 +9,42 @@
         <meta content="width=device-width, initial-scale=1" name="viewport" />
    </head>
     <body class="note-board">
-        <div class="container-fluid">
-            {{>header}}
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col s12">
-                    <h5 class="page_title">
-                        <span>Notes</span>
-                        <a href="/notes#add-note" title="Add Note"><i class="material-icons dp48">note_add</i></a>
-                        <a href="" class="delete-note" title="Delete Note"><i class="material-icons dp48">delete</i></a>
-                    </h5>
-                    <div class="message">{{message}}</div>
-                </div>
+        <div class="content">
+            <div class="container-fluid">
+                {{>header}}
             </div>
-            <div class="row">
-                <div class="col-12 col-md-3 order-md-1">
-                    <div class="notes">
-                        {{#each notes}}
-                            {{>note}}
-                        {{/each}}
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="page_title">
+                            <span>Notes</span>
+                            <a href="/notes#add-note" title="Add Note"><i class="material-icons dp48">note_add</i></a>
+                            <a href="" class="delete-note" title="Delete Note"><i class="material-icons dp48">delete</i></a>
+                        </h5>
+                        <div class="message">{{message}}</div>
                     </div>
                 </div>
-                <div class="col-12 col-md-9 order-md-2">
-                    <form class="add-note" id="add-note">
-                        <input type="text" name="note_title" id="note_title" placeholder="Note title" maxlength="100" required />
-                        <div id="note_description" name="note_description"></div>
-                        <p></p>
-                        <button type="submit" class="kltool-button save-note btn deep-purple darken-1 right">Save note</button>
-                    </form>
+                <div class="row">
+                    <div class="col-12 col-md-3 order-md-1">
+                        <div class="notes">
+                            {{#each notes}}
+                                {{>note}}
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-9 order-md-2">
+                        <form class="add-note" id="add-note">
+                            <input type="text" name="note_title" id="note_title" placeholder="Note title" maxlength="100" required />
+                            <div id="note_description" name="note_description"></div>
+                            <p></p>
+                            <button type="submit" class="kltool-button save-note btn deep-purple darken-1 right">Save note</button>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
+        {{>footer}}
         <link href="/quill/quill.snow.css" rel="stylesheet">
         <script src="/quill/quill.min.js"></script>
         <script>

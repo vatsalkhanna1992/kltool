@@ -9,64 +9,67 @@
         <meta content="width=device-width, initial-scale=1" name="viewport" />
     </head>
     <body class="registration">
-        <div class="container">
-            <form id="register-user">
-                <div class="row">
-                    <div class="col-12">
-                        <h5 class="kltool-text">
-                            Get Started
-                        </h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="error">{{{ error }}}</div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="input-field">
-                            <input type="text" name="username" size="50" required>
-                            <label>Username</label>
+        <div class="content">
+            <div class="container">
+                <form id="register-user">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="kltool-text">
+                                Get Started
+                            </h5>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="input-field">
-                            <input type="text" name="first_name" size="50" required>
-                            <label>First Name</label>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="error">{{{ error }}}</div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="input-field">
-                            <input type="text" name="last_name" size="50" required>
-                            <label>Last Name</label>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="input-field">
+                                <input type="text" name="username" size="50" required>
+                                <label>Username</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <div class="input-field">
-                            <input type="password" name="password" size="50" required>
-                            <label>Password</label>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="input-field">
+                                <input type="text" name="first_name" size="50" required>
+                                <label>First Name</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <button class="btn kltool-button" type="submit">Get Started</button>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="input-field">
+                                <input type="text" name="last_name" size="50" required>
+                                <label>Last Name</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-12">
-                        <p class="kltool-text">Already have an account? <a href="/">Sign in</a></p>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="input-field">
+                                <input type="password" name="password" size="50" required>
+                                <label>Password</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <button class="btn kltool-button" type="submit">Get Started</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <p class="kltool-text">Already have an account? <a href="/">Sign in</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
+        {{>footer}}
         <script src="/js/scripts.js"></script>
     </body>
 </html>

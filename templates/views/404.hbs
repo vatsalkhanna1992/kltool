@@ -10,16 +10,18 @@
         <meta content="width=device-width, initial-scale=1" name="viewport" />
     </head>
     <body>
-        <div class="container">
-            {{>header_anonymous}}
-            <div class="row">
-                <div class="col-xs-12">
-                    <h4 class="kltool-text">404</h4>
-                    <p class="kltool-text">Oops! Page cannot be found on this server</p>
+        <div class="content">
+            <div class="container">
+                {{>header_anonymous}}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4 class="kltool-text">404</h4>
+                        <p class="kltool-text">Oops! Page cannot be found on this server</p>
+                    </div>
                 </div>
             </div>
         </div>
+        {{>footer}}
         <script src="/js/scripts.js"></script>
     </body>
-    {{>footer}}
 </html>

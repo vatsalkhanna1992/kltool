@@ -86,6 +86,10 @@ p a:hover {
     text-decoration: none;
 }
 
+.content {
+    min-height: 45.5vw;
+}
+
 .dashboard p {
     color: #fff;
 }
@@ -368,10 +372,9 @@ p.note_title {
     display: none;
 }
 
-footer {
+.footer {
+    display: flex;
     background-color: #5e35b1;
-    position: absolute;
-    bottom: 0;
     width: 100%;
     color: #ffd8a6;
 }
@@ -385,5 +388,22 @@ footer {
     .kanban-board .todo,
     .kanban-board .inprogress {
         margin-bottom: 10px;
+    }
+
+    .content {
+        min-height: 775px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .content {
+        min-height: 1000px;
+    }
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
+    .content {
+        min-height: 1350px;
     }
 }
