@@ -86,4 +86,32 @@ router.delete('/delete/note', auth, async (req, res) => {
     }
 })
 
+// Search notes.
+router.get('/search/notes', auth, async (req, res) => {
+    const username = req.user.username
+    const searchString = req.query.search_string
+    var notes = ''
+    try {
+        if (searchString != '') {
+            notes = await Notes.find({
+                username: username,
+                title: {
+                    $regex: '.*' + searchString + '.*'
+                }
+            })
+        } else {
+            notes = await Notes.find({
+                username: username
+            })
+        }
+        return res.send({
+            notes
+        })
+    } catch(e) {
+        res.send({
+            error: e
+        })
+    }
+})
+
 module.exports = router

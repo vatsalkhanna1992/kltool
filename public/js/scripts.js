@@ -182,6 +182,8 @@ $('form#register-user').submit(function() {
     return false
 })
 
+
+// Drag and drop feature on Kanban Board.
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -215,3 +217,33 @@ function drop(event, element) {
         }
     })
 }
+
+// Search a note.
+$('#search-notes').keyup(function() {
+    var search_string = $(this).val()
+    $.ajax({
+        url: '/search/notes',
+        method: 'GET',
+        data: {
+            search_string: search_string
+        },
+        success: function(response) {
+            setTimeout(() => {
+                $.ajax({
+                    url: '/note.html',
+                    cache: true,
+                    success: function(data) {
+                        var source = '{{#each notes}}' + data + '{{/each}}';
+                        var template = Handlebars.compile(source)
+                        var context = {
+                            notes: response.notes
+                        }
+                        var el_html = template(context)
+                        $('#notes').html(el_html)
+                    }
+                });
+
+            }, 2000);
+        }
+    })
+})

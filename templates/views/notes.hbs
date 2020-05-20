@@ -26,10 +26,18 @@
                 </div>
                 <div class="row">
                     <div class="col-12 col-md-3 order-md-1">
-                        <div class="notes">
-                            {{#each notes}}
-                                {{>note}}
-                            {{/each}}
+                        <div class="row">
+                            <div class="input-field">
+                                <input type="text" id="search-notes" />
+                                <label>Search Notes <i class="material-icons dp48">search</i></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="notes" class="notes">
+                                {{#each notes}}
+                                    {{>note}}
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
                     <div class="col-12 col-md-9 order-md-2">
@@ -53,6 +61,7 @@
                 theme: 'snow'
             });
         </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.js"></script>
         <script src="/js/scripts.js"></script>
     </body>
 </html>
