@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+           User Profile | Kltool
+        </title>
+        {{>general_css_js}}
+        {{>materialize}}
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+    </head>
+    <body class="profile">
+        <div class="content">
+            <div class="container-fluid">
+                {{>header}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        <form method="post" action="/update/profile">
+                            <div class="container">
+                                <div class="row">
+                                    <h5 class="kltool-text">
+                                        Update Profile
+                                    </h5>
+                                </div>
+                                <div class="row">
+                                    <div class="message">{{message_profile}}</div>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <label>Username</label>
+                                        <input type="text" name="username" value={{username}} size="50" disabled>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <label>First Name</label>
+                                        <input type="text" name="first_name" value={{firstName}} size="50" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <label>Last Name</label>
+                                        <input type="text" name="last_name" value={{lastName}} size="50" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="btn kltool-button" type="submit">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <form method="post" action="/update/password">
+                            <div class="container">
+                                <div class="row">
+                                    <h5 class="kltool-text">
+                                        Change Password
+                                    </h5>
+                                </div>
+                                <div class="row">
+                                    <div class="message">{{message_password}}</div>
+                                    <div class="error">{{error}}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <input type="password" name="old_password" size="50" required>
+                                        <label>Current Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <input type="password" name="password" size="50" required>
+                                        <label>New Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field">
+                                        <input type="password" name="confirm_password" size="50" required>
+                                        <label>Confirm Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button class="btn kltool-button" type="submit">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{>footer}}
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>

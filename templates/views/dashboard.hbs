@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Dashboard | Kltool
+        </title>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        {{>general_css_js}}
+        {{>materialize}}
+    </head>
+    <body class="dashboard">
+        <div class="content">
+            <div class="container-fluid">
+                {{>header}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h5 class="kltool-text">
+                            Hello, {{firstName}} {{lastName}}
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-12 card-layout">
+                        <div class="card deep-purple lighten-2 darken-1">
+                            <div class="card-content white-text">
+                            <span class="card-title">Personal Kanban Board</span>
+                            <p>This tool provides a feature to create your personal Kanban board to manage your day to day tasks.</p>
+                            </div>
+                            <div class="card-action">
+                            <a href="/kanban-board">Add your tasks now</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 card-layout">
+                        <div class="card deep-purple lighten-2 darken-1">
+                            <div class="card-content white-text">
+                            <span class="card-title">Learning Notes</span>
+                            <p>You can save all your learnings here. This tool provides a feature to add, edit or remove your notes.</p>
+                            </div>
+                            <div class="card-action">
+                            <a href="/notes">Add your notes now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{>footer}}
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>

@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js -e hbs,js,css"
+    "dev": "env-cmd nodemon src/app.js -e hbs,js,css"
   },
   "repository": {
     "type": "git",
@@ -18,14 +18,25 @@
   },
   "homepage": "https://github.com/vatsalkhanna1992/kltool#readme",
   "dependencies": {
+    "@sendgrid/mail": "^7.1.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.4.1",
+    "bootstrap-material-design": "^4.1.2",
+    "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "jquery": "^3.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "materialize-css": "^1.0.0",
+    "mongoose": "^5.9.12",
     "path": "^0.12.7",
-    "popper.js": "^1.16.1"
+    "popper.js": "^1.16.1",
+    "quill": "^1.3.7",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
+    "env-cmd": "^10.1.0",
     "nodemon": "^2.0.3"
   }
 }

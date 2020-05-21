@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Kanban board | Kltool
+        </title>
+        {{>general_css_js}}
+        {{>materialize}}
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+    </head>
+    <body class="kanban-board">
+        <div class="content">
+            <div class="container-fluid">
+                {{>header}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="page_title">Board <button title="Add Card" type="button" data-toggle="modal" data-target="#addCard">+</button></h5>
+                    </div>
+                </div>
+                <div class="row d-none d-sm-flex">
+                    <div class="col-md-4 todo">
+                        <h6>To Do</h6>
+                    </div>
+                    <div class="col-md-4 inprogress">
+                        <h6>In Progress</h6>
+                    </div>
+                    <div class="col-md-4 completed">
+                        <h6>Completed</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 d-sm-none todo">
+                        <h6>To Do</h6>
+                    </div>
+                    <div class="col-12 col-md-4 todo cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                        {{#each cards}}
+                            {{#cardsStatus this.status 'todo'}}
+                                {{>card}}
+                            {{/cardsStatus}}
+                        {{/each}}
+                    </div>
+                    <div class="col-12 d-sm-none inprogress">
+                        <h6>In Progress</h6>
+                    </div>
+                    <div class="col-12 col-md-4 inprogress cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                        {{#each cards}}
+                            {{#cardsStatus this.status 'in_progress'}}
+                                {{>card}}
+                            {{/cardsStatus}}
+                        {{/each}}
+                    </div>
+                    <div class="col-12 d-sm-none completed">
+                        <h6>Completed</h6>
+                    </div>
+                    <div class="col-12 col-md-4 completed cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                        {{#each cards}}
+                            {{#cardsStatus this.status 'done'}}
+                                {{>card}}
+                            {{/cardsStatus}}
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="addCard">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form method="post" action="/add/card">
+                            <div class="modal-header">
+                                <h5 class="modal-title">New Card</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-field">
+                                    <input type="text" name="card_title" required />
+                                    <label>Task</label>
+                                </div>
+                                <div class="input-field">
+                                    <textarea name="card_description" class="materialize-textarea"></textarea>
+                                    <label>Description</label>
+                                </div>
+                                <div class="input-field">
+                                    <select name="card_status" required>
+                                        <option value="todo" selected>To Do</option>
+                                        <option value="in_progress">In Progress</option>
+                                        <option value="done">Completed</option>
+                                    </select>
+                                    <label>Status</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn kltool-button">Add Card</button>
+                                <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="editCard">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <form method="post" action="/update/card">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Edit Card</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-field">
+                                    <input type="hidden" id="card_id" name="card_id" />
+                                </div>
+                                <div class="input-field">
+                                    <input type="text" id="card_title" name="update_card_title" required />
+                                    <label>Task</label>
+                                </div>
+                                <div class="input-field">
+                                    <textarea id="card_description" name="update_card_description" class="materialize-textarea"></textarea>
+                                    <label>Description</label>
+                                </div>
+                                <div class="input-field" >
+                                    <select name="update_card_status" id="card_status" required>
+                                        <option value="todo" selected>To Do</option>
+                                        <option value="in_progress">In Progress</option>
+                                        <option value="done">Completed</option>
+                                    </select>
+                                    <label>Status</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn kltool-button">Update Card</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{>footer}}
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>

@@ -1,0 +1,441 @@
+.logo a,
+.kltool-text,
+.header .sidenav a,
+.header .sidenav form button {
+    color: #5e35b1;
+}
+
+.header .sidenav a.subheader {
+    color: rgba(0,0,0,0.54);
+}
+
+.header .sidenav i {
+    color: #ffab40 !important;
+}
+
+.header .brand-logo {
+    padding-left: 10px;
+    color: #ffd8a6;
+}
+
+.header #dropdown button {
+    box-shadow: none;
+    font-size: 1rem;
+    letter-spacing: 0;
+    border: none;
+    color: #ffd8a6;
+    padding-top: 0;
+    padding-bottom: 0;
+    width: 100%;
+    min-height: 60px;
+    line-height: 20px;
+}
+
+.header #dropdown button:hover {
+    color: #ffab40;
+}
+
+.header #dropdown li {
+    border-bottom: 1px solid #fff;
+}
+
+.header .nav-wrapper i {
+    margin-left: 0;
+}
+
+.header a {
+    color: #ffd8a6;
+}
+
+.header a:hover {
+    background-color: #673ab7 !important;
+    color: #ffab40 !important;
+}
+
+.header .sidenav button {
+    color: rgba(0,0,0,0.87);
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    height: 48px;
+    line-height: 48px;
+    padding: 0 32px;
+    width: 100%;
+}
+
+.header .sidenav button:hover,
+.header .sidenav button:focus {
+    background-color: #673ab7;
+    color: #ffab40;
+}
+
+.search-field {
+    position: absolute;
+    width: 100px;
+}
+
+p a,
+.message a,
+.error a {
+    color: #c36f04;
+    text-decoration: none;
+}
+
+p a:hover {
+    color: #ffab40;
+    text-decoration: none;
+}
+
+.header a:hover {
+    color: #ffab40;
+    text-decoration: none;
+}
+
+.content {
+    min-height: 45vw;
+}
+
+.dashboard p {
+    color: #fff;
+}
+
+.error {
+    color: red;
+}
+
+.header {
+    height: 75px;
+}
+
+.logo {
+    font-size: 24px;
+}
+
+.kanban-board .todo,
+.kanban-board .inprogress,
+.kanban-board .completed {
+    text-align: center;
+}
+
+.kanban-board h5 {
+    text-align: center;
+}
+
+.modal {
+    background-color: transparent !important;
+    max-height: unset !important;
+    width: unset !important;
+}
+
+.message {
+    color: green;
+}
+
+.input-field>label {
+    color: #7c4dff !important;
+}
+
+input[type="text"],
+input[type="password"],
+textarea.materialize-textarea,
+.input-field .select-wrapper span {
+    color: #5e35b1 !important;
+    border-bottom: 1px solid #7c4dff !important;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea.materialize-textarea:focus {
+    border-bottom: 1px solid #5e35b1 !important;
+    box-shadow: 0 1px 0 0 #5e35b1 !important;
+    color: #5e35b1 !important;
+}
+
+
+.input-field label:focus,
+.input-field label.active,
+.profile label:focus,
+.profile label.active {
+    color: #5e35b1;
+}
+
+.kltool-button {
+    background-color: #5e35b1 !important;
+    color: #ffd8a6 !important;
+}
+
+.profile button:hover,
+.kltool-button:hover {
+    color: #ffab40 !important;
+}
+
+.kanban-board h5.page_title {
+    font-size: 22px;
+    color: #5e35b1;
+    vertical-align: center;
+    height: 40px;
+    border-radius: 5px;
+    padding-top: 7px;
+}
+
+.kanban-board .page_title button,
+.kanban-board .page_title button:focus,
+.kanban-board .page_title button:active,
+.kanban-board .modal-footer button,
+.kanban-board .modal-footer button:focus,
+.kanban-board .modal-footer button:active {
+    background-color: #5e35b1;
+    color: #fff;
+    border: transparent;
+    border-radius: 10px;
+}
+
+.kanban-board .modal-header button:focus {
+    background-color: transparent;
+}
+
+.kanban-board .modal-header .modal-title {
+    color: #5e35b1;
+}
+
+.kanban-board h6 {
+    font-size: 20px;
+    background-color: #5e35b1;
+    vertical-align: center;
+    height: 40px;
+    border-radius: 5px;
+    padding-top: 7px;
+    color: #fff;
+}
+
+.kanban-board .cards .card {
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 0;
+    background-color: #ede7f6;
+    cursor: move;
+}
+
+.kanban-board .todo .card {
+    border-left: 5px solid red;
+    border-left: 5px solid red;
+}
+
+.kanban-board .inprogress .card {
+    border-left: 5px solid orange;
+}
+
+.kanban-board .completed .card {
+    border-left: 5px solid green;
+}
+
+.kanban-board .cards .card .card_title {
+    font-size: 18px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: #311b92;
+}
+
+.kanban-board .cards .card .card_description {
+    font-size: 14px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: #7c4dff;
+}
+
+.kanban-board .cards .card .operations {
+    text-align: right;
+    padding-right: 5px;
+}
+
+.kanban-board .cards .card .states {
+    text-align: right;
+    padding-right: 5px;
+    margin-bottom: 5px;
+}
+
+.kanban-board .cards .card .operations i {
+    font-size: 18px;
+    color: #311b92;
+    margin-top: 5px;
+}
+
+.kanban-board .cards .card .states .state {
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.kanban-board .cards .card .states .state {
+    background-color: #311b92;
+    width: 20px;
+    height: 23px;
+    border-radius: 5px;
+}
+
+.kanban-board .cards .card .states .state:hover,
+.kanban-board .cards .card .operations i:hover {
+    color: #ffab40;
+}
+
+.todo .todo,
+.inprogress .in_progress,
+.completed .done {
+    color: #ffd8a6 !important;
+}
+
+.note-board h5 {
+    text-align: center;
+}
+
+.note-board h5 i,
+.note-board h5 span {
+    color: #5e35b1;
+}
+
+.note-board h5 i {
+    font-size: 26px;
+}
+
+.note-board .page_title a.add-note-button,
+.note-board .page_title a.delete-note {
+    vertical-align: middle;
+}
+
+.note-board .note {
+    margin: 0 auto;
+    background-color: #fff;
+    min-height: 50px;
+    padding: 10px;
+    padding-bottom: 0;
+    //border: 2px solid #5e35b1;
+    //border-bottom: transparent;
+    //border-radius: 5px;
+    width: 100%;
+    //box-shadow: 0 -3px 5px grey;
+    border-bottom: 1px solid #5e35b1;
+}
+
+.note-board .note:last-child {
+    //border-bottom: 2px solid #5e35b1;
+}
+
+.note-board .note label a {
+    color: #5e35b1;
+    text-decoration: none;
+    font-size: 16px;
+}
+.note-board .note:hover{
+    cursor: pointer;
+    border-bottom: 2px solid #5e35b1;
+}
+
+.note-board .note.selected {
+    cursor: pointer;
+    border-bottom: 2px solid #5e35b1;
+}
+
+.note-board .note.selected {
+    background-color: #ede7f6;
+    width: 100%;
+}
+
+.notes {
+    overflow-y: scroll;
+    height: 500px;
+    width: 100%;
+}
+
+form.add-note input,
+form.add-note input:focus,
+form.add-note input:hover {
+    color: #000 !important;
+    border-bottom: 1px solid #000 !important;
+}
+
+form.add-note input:focus {
+    box-shadow: 0 1px 0 0 #000 !important;
+}
+
+form.add-note label {
+    color: grey !important;
+    font-style: italic;
+    font-size: 13px;
+}
+
+form.add-note label:focus,
+form.add-note label:hover,
+form.add-note label.active {
+    color:  #000 !important;
+}
+
+#note_description {
+    height: 400px;
+}
+
+#note_description strong{
+    font-weight: bolder;
+}
+
+.checkbox-purple[type="checkbox"]:checked+span:not(.lever):before {
+    border-right: 2px solid #5e35b1;
+    border-bottom: 2px solid #5e35b1;
+}
+
+.checkbox-purple[type="checkbox"]+span:not(.lever):before,
+.checkbox-purple[type="checkbox"]:not(.filled-in)+span:not(.lever):after {
+    border: 2px solid #5e35b1;
+    border-radius: 10px;
+}
+
+p.note_title {
+    word-wrap: break-word;
+    max-width: 180px;
+}
+
+.note-board .delete-note {
+    display: none;
+}
+
+.footer {
+    display: flex;
+    background-color: #5e35b1;
+    width: 100%;
+    color: #ffd8a6;
+}
+
+.footer .copyright-text {
+    color: #ffd8a6;
+}
+
+@media only screen and (max-width: 767px) {
+    .notes {
+        overflow-y: scroll;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+    .kanban-board .todo,
+    .kanban-board .inprogress {
+        margin-bottom: 10px;
+    }
+
+    .content {
+        min-height: 775px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .content {
+        min-height: 1000px;
+    }
+}
+
+
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
+    .content {
+        min-height: 1350px;
+    }
+}

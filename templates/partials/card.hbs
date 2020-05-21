@@ -1,0 +1,16 @@
+<div id="card-{{this._id}}" draggable="true" ondragstart="drag(event)">
+    <div class="w-100"></div>
+    <div class="card">
+        <div class="operations" data-card-id={{this._id}}>
+            <a type="button" class="edit-card" data-toggle="modal" data-target="#editCard" href="/edit/card" title="Edit Card"><i class="material-icons dp48">edit</i></a>
+            <a type="button" class="remove-card" href="/remove/card?id={{this._id}}" title="Remove Card"><i class="material-icons dp48">delete</i></a>
+        </div>
+        <p class="card_title">{{ this.title }}</p>
+        <p class="card_description">{{ this.description }}</p>
+        <div class="states" data-card-id={{this._id}}>
+            <a type="button" class="state todo" title="Defined" data-status="todo">D</a>
+            <a type="button" class="state in_progress" title="In Progress" data-status="in_progress">P</a>
+            <a type="button" class="state done" title="Completed" data-status="done">C</a>
+        </div>
+    </div>
+</div>
