@@ -407,6 +407,10 @@ p.note_title {
     color: #ffd8a6;
 }
 
+.footer .copyright-text {
+    color: #ffd8a6;
+}
+
 @media only screen and (max-width: 767px) {
     .notes {
         overflow-y: scroll;
