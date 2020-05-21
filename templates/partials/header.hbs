@@ -13,7 +13,7 @@
     </ul>
 
     <nav>
-        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger d-block"><i class="material-icons">menu</i></a>
         <div class="nav-wrapper deep-purple">
             <a href="/" class="brand-logo">Kltool</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -27,18 +27,22 @@
   <ul id="slide-out" class="sidenav">
     <li><a href="/user/profile"><i class="material-icons">person</i>My Profile</a></li>
     <li><div class="divider"></div></li>
-    <li><a class="subheader">Logout</a></li>
-    <li>
+    <li><a href="/kanban-board">My board</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="/notes">My notes</a></li>
+    <li><div class="divider"></div></li>
+    <li class="d-sm-none"><a class="subheader">Logout</a></li>
+    <li class="d-sm-none">
         <form method="post" action="/user/logout">
             <button type="submit">Logout from this device</button>
         </form>
     </li>
-    <li>
+    <li class="d-sm-none">
         <form method="post" action="/user/logout-all">
             <button type="submit">Logout from all devices</button>
         </form>
     </li>
-    <li><div class="divider"></div></li>
-    <li><a href="#" class="delete-account">Delete my account</a></li>
+    <li class="d-sm-none"><div class="divider"></div></li>
+    <li class="d-sm-none"><a href="#" class="delete-account">Delete my account</a></li>
   </ul>
 </div>

@@ -300,6 +300,11 @@ textarea.materialize-textarea:focus {
     font-size: 26px;
 }
 
+.note-board .page_title a.add-note-button,
+.note-board .page_title a.delete-note {
+    vertical-align: middle;
+}
+
 .note-board .note {
     margin: 0 auto;
     background-color: #fff;
