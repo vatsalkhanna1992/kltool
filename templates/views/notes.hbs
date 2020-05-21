@@ -18,7 +18,7 @@
                     <div class="col s12">
                         <h5 class="page_title">
                             <span>Notes</span>
-                            <a href="/notes#add-note" title="Add Note"><i class="material-icons dp48">note_add</i></a>
+                            <a href="/notes" title="Add Note" class="add-note-button"><i class="material-icons dp48">note_add</i></a>
                             <a href="" class="delete-note" title="Delete Note"><i class="material-icons dp48">delete</i></a>
                         </h5>
                         <div class="message">{{message}}</div>
@@ -28,8 +28,8 @@
                     <div class="col-12 col-md-3 order-md-1">
                         <div class="row">
                             <div class="input-field">
-                                <input type="text" id="search-notes" />
-                                <label><i class="material-icons dp48">search</i></label>
+                                <input type="text" id="search-notes" size="40"/>
+                                <label><i class="material-icons dp48">search</i> <span class="search-field">Search notes</span></label>
                             </div>
                         </div>
                         <div class="row">
@@ -42,7 +42,11 @@
                     </div>
                     <div class="col-12 col-md-9 order-md-2">
                         <form class="add-note" id="add-note">
-                            <input type="text" name="note_title" id="note_title" placeholder="Note title" maxlength="100" required />
+                            <div class="input-field">
+                                <input type="text" name="note_title" id="note_title" maxlength="100" required />
+                                <label>Note title</label>
+                            </div>
+                            {{!-- <input type="text" name="note_title" id="note_title" placeholder="Note title" maxlength="100" required /> --}}
                             <div id="note_description" name="note_description"></div>
                             <p></p>
                             <button type="submit" class="kltool-button save-note btn deep-purple darken-1 right">Save note</button>

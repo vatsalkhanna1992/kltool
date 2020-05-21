@@ -96,7 +96,7 @@ router.get('/search/notes', auth, async (req, res) => {
             notes = await Notes.find({
                 username: username,
                 title: {
-                    $regex: '.*' + searchString + '.*'
+                    $regex: new RegExp('.*' + searchString + '.*', 'i')
                 }
             })
         } else {

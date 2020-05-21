@@ -5,6 +5,10 @@ $(document).ready(function(){
     $(".dropdown-trigger").dropdown();
 })
 
+$('.input-field label').click(function() {
+    $(this).siblings('input').focus()
+})
+
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.sidenav');
     var instances = M.Sidenav.init(elems);
@@ -48,7 +52,6 @@ $('.kanban-board .states .state').click(function() {
 })
 
 // Show note through ajax.
-
 $('body').on('click', '.note', function(e) {
     e.preventDefault()
     var note_id = $(this).data('note-id')
@@ -108,6 +111,14 @@ $('form.add-note').submit(function() {
         }
     })
 })
+
+if ($('.note-board').length > 0) {
+    if ($(window).width() < 768) {
+        $('html, body').animate({
+            scrollTop: $("#note_title").offset().top
+        }, 1000);
+    }
+}
 
 $('body').on('click', '.note', function(e) {
     $('.note-board .note').each(function() {
