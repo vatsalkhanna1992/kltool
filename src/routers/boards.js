@@ -1,5 +1,6 @@
 const express = require('express')
 const Boards = require('../models/boards')
+const { Cards } = require('../models/cards')
 const auth = require('../middleware/auth')
 const router = new express.Router()
 const hbs = require('hbs')
@@ -9,7 +10,6 @@ router.post('/add/board', auth, async (req, res) => {
     const username = req.user.username
     const board_title = req.body.board_title
     const board_description = req.body.board_description
-    console.log(board_description)
     const board_layout = req.body.board_layout
     var column_title = [];
     for (var i = 0; i < board_layout; i++) {
@@ -57,9 +57,12 @@ router.get('/board/:id', auth, async (req, res) => {
             layout = '12'
         }
         res.render('board', {
+            board_id,
             col_layout: layout,
             board_title: board.board_title,
-            column_title: board.column_title
+            column_title: board.column_title,
+            cards: board.cards,
+            board
         })
     } catch (e) {
         res.send({
@@ -89,6 +92,30 @@ router.get('/boards', auth, async (req, res) => {
     }
 })
 
+// Add card on board through ajax.
+router.post('/new/card', auth, async (req, res) => {
+    const username = req.user.username
+    const title = req.body.card_title
+    const description = req.body.card_description
+    const status = req.body.card_status
+    const board_id = req.body.board_id
+    const card = new Cards({
+        username,
+        title,
+        description,
+        status
+    })
+    try {
+        const board = await Boards.findByIdAndUpdate(board_id, {
+            $push: {
+                cards: card
+            }
+        })
+        res.redirect('/board/' + board_id)
+    } catch (e) {
+        res.render('kanban')
+    }
+})
 // Register helper for handlebars.
 hbs.registerHelper('columnsLength', function(layout, length, options) {
     if (layout == length) {

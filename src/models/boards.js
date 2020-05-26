@@ -29,7 +29,7 @@ const boardSchema = new mongoose.Schema({
     column_title: {
         type: Array
     },
-    cards: CardSchema
+    cards: [CardSchema]
 }, {
     timestamps: true
 })
