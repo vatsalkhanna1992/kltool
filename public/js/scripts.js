@@ -2,7 +2,17 @@ $ = jQuery
 
 $(document).ready(function(){
     $('.kanban-board select').formSelect();
+    $('#board_layout').formSelect();
     $(".dropdown-trigger").dropdown();
+
+    if ($('body.kanban-board').length > 0) {
+        if ($('.container-scroll .row:first').children().hasClass('col-md-2')) {
+            $('.container-scroll .row:first').addClass('width_200')
+        }
+        if ($('.container-scroll .row:first').children().hasClass('col-md-1')) {
+            $('.container-scroll .row:first').addClass('width_400')
+        }
+    }
 })
 
 $('.input-field label').click(function() {
@@ -258,4 +268,21 @@ $('#search-notes').keyup(function() {
             }, 2000);
         }
     })
+})
+
+// Select layout for new board.
+$('#board_layout').change(function() {
+    var layouts = $(this).val()
+    $('#addBoard .column_title').each(function() {
+        if (!$(this).hasClass('d-none')) {
+            $(this).addClass('d-none')
+        }
+        if ($(this).find('input').attr('required')) {
+            $(this).find('input').removeAttr('required')
+        }
+    })
+    for(var i = 0; i < layouts; i++) {
+        $('input[name="column[' + i + ']"').parent().removeClass('d-none')
+        $('input[name="column[' + i + ']"').prop('required', true)
+    }
 })

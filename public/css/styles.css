@@ -281,6 +281,14 @@ textarea.materialize-textarea:focus {
     color: #ffab40;
 }
 
+.width_200 {
+    width: 200% !important;
+}
+
+.width_400 {
+    width: 400% !important;
+}
+
 .todo .todo,
 .inprogress .in_progress,
 .completed .done {

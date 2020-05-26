@@ -169,7 +169,7 @@ router.post('/user/registration', async (req, res) => {
             }
             if (err.password) {
                 res.status(400).send({
-                    error: 'Password length should be greater than 8.'
+                    error: 'Please enter valid password and password length should be greater than 8.'
                 })
                 return
             }

@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>
-            Dashboard | Kltool
+            Boards | Kltool
         </title>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         {{>general_css_js}}
@@ -14,36 +14,31 @@
                 {{>header}}
             </div>
             <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <h5 class="kltool-text">
-                            Hello, {{firstName}} {{lastName}}
-                        </h5>
-                    </div>
+                <div class="col-12">
+                    <div class="message">{{{message}}}</div>
                 </div>
+                <div class="col-12">
+                    <div class="error">{{{error}}}</div>
+                </div>
+            </div>
+            <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 col-12 card-layout">
-                        <div class="card deep-purple lighten-2 darken-1">
-                            <div class="card-content white-text">
-                            <span class="card-title">Personal Kanban Board</span>
-                            <p>This tool provides a feature to create your personal Kanban board to manage your day to day tasks.</p>
-                            </div>
-                            <div class="card-action">
-                            <a href="/kanban-board" data-toggle="modal" data-target="#addBoard">Create your board</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-12 card-layout">
-                        <div class="card deep-purple lighten-2 darken-1">
-                            <div class="card-content white-text">
-                            <span class="card-title">Notes</span>
-                            <p>You can save all your learnings here. This tool provides a feature to add, edit or remove your notes.</p>
-                            </div>
-                            <div class="card-action">
-                            <a href="/notes">Add your notes now</a>
+                    {{#each boards}}
+                        <div class="col-lg-6 col-12 card-layout">
+                            <div class="card deep-purple lighten-2 darken-1">
+                                <div class="card-action">
+                                    <a href="/board/{{this.id}}">
+                                        <div class="card-content white-text">
+                                            <span class="card-title">{{this.board_title}}</span>
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <span class="card-description">{{this.board_description}}</span>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {{/each}}
                 </div>
             </div>
         </div>
@@ -58,13 +53,12 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            {{!-- <div class="input-field">
+                                <input type="hidden" id="card_id" name="card_id" />
+                            </div> --}}
                             <div class="input-field">
                                 <input type="text" id="board_title" name="board_title" required />
                                 <label>Title</label>
-                            </div>
-                            <div class="input-field">
-                                <input type="text" id="board_description" name="board_description" required />
-                                <label>Description</label>
                             </div>
                             <div class="input-field">
                                 <select name="board_layout" id="board_layout" required>
