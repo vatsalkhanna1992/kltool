@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="container container-scroll">
-                <div class="row d-none d-sm-flex text-center">
+                <div class="row column-heading-row d-none d-sm-flex text-center">
                     {{#columnsLength col_layout '3'}}
                         {{#each column_title}}
                             {{>board_desktop_3}}
@@ -45,42 +45,49 @@
                         {{/each}}
                     {{/columnsLength}}
                 </div>
-                <div class="row">
+                <div class="row column-card-row">
                     {{#columnsLength col_layout '3'}}
-                        {{!-- {{#each this.column_title}} --}}
                         {{>board_mobile_3}}
-                        {{>board_desktop_3_cards}}
+                        {{#each board as |board|}}
+                            {{#each board.column_title as |column_title|}}
+                                <div class="col-md-4 cards column-{{@index}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                    {{#each board.cards as |card|}}
+                                        {{#cardsStatus card.status @../index}}
+                                            {{>card}}
+                                        {{/cardsStatus}}
+                                    {{/each}}
+                                </div>
+                            {{/each}}
+                        {{/each}}
                     {{/columnsLength}}
                     {{#columnsLength col_layout '6'}}
                         {{>board_mobile_6}}
-                        {{>board_desktop_6_cards}}
+                        {{#each board as |board|}}
+                            {{#each board.column_title as |column_title|}}
+                                <div class="col-md-2 cards column-{{@index}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                    {{#each board.cards as |card|}}
+                                        {{#cardsStatus card.status @../index}}
+                                            {{>card}}
+                                        {{/cardsStatus}}
+                                    {{/each}}
+                                </div>
+                            {{/each}}
+                        {{/each}}
                     {{/columnsLength}}
                     {{#columnsLength col_layout '12'}}
                         {{>board_mobile_12}}
-                        {{>board_desktop_12_cards}}
+                        {{#each board as |board|}}
+                            {{#each board.column_title as |column_title|}}
+                                <div class="col-md-1 cards column-{{@index}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                    {{#each board.cards as |card|}}
+                                        {{#cardsStatus card.status @../index}}
+                                            {{>card}}
+                                        {{/cardsStatus}}
+                                    {{/each}}
+                                </div>
+                            {{/each}}
+                        {{/each}}
                     {{/columnsLength}}
-                            {{!-- <div class="col-12 col-md-4 todo cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-                                {{#each cards}}
-                                    {{#cardsStatus this.status 'todo'}}
-                                        {{>card}}
-                                    {{/cardsStatus}}
-                                {{/each}}
-                            </div>
-                            <div class="col-12 col-md-4 inprogress cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-                                {{#each cards}}
-                                    {{#cardsStatus this.status 'in_progress'}}
-                                        {{>card}}
-                                    {{/cardsStatus}}
-                                {{/each}}
-                            </div>
-                            <div class="col-12 col-md-4 completed cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-                                {{#each cards}}
-                                    {{#cardsStatus this.status 'done'}}
-                                        {{>card}}
-                                    {{/cardsStatus}}
-                                {{/each}}
-                            </div> --}}
-                        {{!-- {{/each}} --}}
                 </div>
             </div>
             <div class="modal" tabindex="-1" role="dialog" id="addCard">

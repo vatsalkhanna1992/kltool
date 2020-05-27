@@ -60,11 +60,28 @@ router.post('/update/card', auth, async (req, res) => {
 })
 
 // Delete card on Kanban Board.
-router.get('/remove/card', auth, async (req, res) => {
-    const card_id = req.query.id
+router.delete('/remove/card', auth, async (req, res) => {
+    const card_id = req.body.card_id
+    const board_id = req.body.board_id
     try {
-        await Cards.findByIdAndDelete(card_id)
-        res.status(301).redirect('/kanban-board')
+        if (board_id !== '') {
+            await Boards.findOneAndUpdate({ _id: board_id }, {
+                $pull: {
+                    'cards': {
+                        '_id': card_id
+                    }
+                }
+            })
+            res.send({
+                card_id,
+                board_id
+            })
+        } else {
+            await Cards.findByIdAndDelete(card_id)
+            res.send({
+                card_id
+            })
+        }
     } catch (e) {
         res.status(400).send({
             error: 'Card cannot be deleted.'
@@ -128,7 +145,7 @@ router.get('/update/card', auth, async (req, res) => {
 
 // Register helper for handlebars.
 hbs.registerHelper('cardsStatus', function(card_status, status, options) {
-    if (card_status === status) {
+    if (card_status == status) {
         return options.fn(this)
     } else {
         options.inverse(this)

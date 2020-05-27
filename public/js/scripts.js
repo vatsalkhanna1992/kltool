@@ -1,17 +1,17 @@
 $ = jQuery
 
-$(document).ready(function(){
+$(document).ready(function() {
     $('.kanban-board select').formSelect();
     $('#board_layout').formSelect();
     $(".dropdown-trigger").dropdown();
 
     if ($('body.kanban-board').length > 0) {
-        if ($('.container-scroll .row:first').children().hasClass('col-md-2')) {
-            $('.container-scroll .row:first').addClass('width_200')
-        }
-        if ($('.container-scroll .row:first').children().hasClass('col-md-1')) {
-            $('.container-scroll .row:first').addClass('width_400')
-        }
+        var container_width = $('.container-scroll .row').width()
+        var column_width = container_width/3
+        var no_of_columns = $('.container-scroll .row.column-heading-row div').length
+        var total_width = column_width * no_of_columns
+        $('.container-scroll .row').width(total_width)
+        $('.container-scroll .row div').width(column_width - 30)
     }
 })
 
@@ -28,6 +28,7 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
 });
 
+// Edit card.
 $('.edit-card').click(function() {
     var card_id = $(this).parent().data('card-id')
     var board_id = ''
@@ -63,6 +64,31 @@ $('.kanban-board .states .state').click(function() {
         },
         success: function(result) {
             window.location.href = "/kanban-board";
+        }
+    })
+})
+
+// Delete card.
+$('.remove-card').click(function(e) {
+    e.preventDefault()
+    var card_id = $(this).parent().data('card-id')
+    var board_id = ''
+    if ($('body.kanban-board').attr('data-board-id')) {
+        board_id = $('body.kanban-board').data('board-id')
+    }
+    $.ajax({
+        url: '/remove/card',
+        method: 'DELETE',
+        data: {
+            card_id: card_id,
+            board_id: board_id
+        },
+        success: function(result) {
+            if (Object.keys(result).length == 2) {
+                window.location.href = '/board/' + result.board_id;
+            } else {
+                window.location.href = '/kanban-board';
+            }
         }
     })
 })
