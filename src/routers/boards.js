@@ -106,7 +106,7 @@ router.post('/new/card', auth, async (req, res) => {
         status
     })
     try {
-        const board = await Boards.findByIdAndUpdate(board_id, {
+        await Boards.findByIdAndUpdate(board_id, {
             $push: {
                 cards: card
             }
@@ -116,6 +116,7 @@ router.post('/new/card', auth, async (req, res) => {
         res.render('kanban')
     }
 })
+
 // Register helper for handlebars.
 hbs.registerHelper('columnsLength', function(layout, length, options) {
     if (layout == length) {

@@ -2,6 +2,7 @@ const express = require('express')
 const { Cards } = require('../models/cards')
 const auth = require('../middleware/auth')
 const hbs = require('hbs')
+const Boards = require('../models/boards')
 
 const router = new express.Router()
 
@@ -28,17 +29,29 @@ router.post('/add/card', auth, async (req, res) => {
 
 // Update card on Kanban Board.
 router.post('/update/card', auth, async (req, res) => {
-    const title = req.body.update_card_title
-    const description = req.body.update_card_description
-    const status = req.body.update_card_status
+    let title = req.body.update_card_title
+    let description = req.body.update_card_description
+    let status = req.body.update_card_status
     const card_id = req.body.card_id
+    const board_id = req.body.board_id
     let completed = false
     if (status === 'done') {
         completed = true
     }
     try {
-        await Cards.findByIdAndUpdate(card_id, {title, description, status, completed})
-        res.status(301).redirect('/kanban-board')
+        if (board_id) {
+            await Boards.findOneAndUpdate({ _id: board_id, 'cards._id': card_id}, {
+                $set: {
+                    'cards.$.title': title,
+                    'cards.$.description': description,
+                    'cards.$.status': status,
+                }
+            })
+            res.status(301).redirect('/board/' + board_id)
+        } else {
+            await Cards.findByIdAndUpdate(card_id, {title, description, status, completed})
+            res.status(301).redirect('/kanban-board')
+        }
     } catch (e) {
         res.status(400).send({
             error: 'Card cannot be updated.'
@@ -75,8 +88,18 @@ router.get('/kanban-board', auth, async (req, res) => {
 // Fetch card through ajax.
 router.get('/fetch/card', auth, async (req, res) => {
     const card_id = req.query.id
+    const board_id = req.query.board_id
     try {
-        const card = await Cards.findById(card_id)
+        let card
+        if (board_id !== '') {
+            const board = await Boards.findById(board_id)
+            card = board.cards.filter(card => {
+                return card.id == card_id
+            });
+            card = card[0]
+        } else {
+            card = await Cards.findById(card_id)
+        }
         res.send({
             card
         })

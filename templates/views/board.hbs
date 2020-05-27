@@ -15,7 +15,7 @@
             }
         </style>
     </head>
-    <body class="kanban-board">
+    <body class="kanban-board" data-board-id={{board_id}}>
         <div class="content">
             <div class="container-fluid">
                 {{>header}}
@@ -46,10 +46,19 @@
                     {{/columnsLength}}
                 </div>
                 <div class="row">
-                    {{#if column_title.length}}
+                    {{#columnsLength col_layout '3'}}
                         {{!-- {{#each this.column_title}} --}}
-                            {{>board_mobile_3}}
-                            {{>board_desktop_3_cards}}
+                        {{>board_mobile_3}}
+                        {{>board_desktop_3_cards}}
+                    {{/columnsLength}}
+                    {{#columnsLength col_layout '6'}}
+                        {{>board_mobile_6}}
+                        {{>board_desktop_6_cards}}
+                    {{/columnsLength}}
+                    {{#columnsLength col_layout '12'}}
+                        {{>board_mobile_12}}
+                        {{>board_desktop_12_cards}}
+                    {{/columnsLength}}
                             {{!-- <div class="col-12 col-md-4 todo cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
                                 {{#each cards}}
                                     {{#cardsStatus this.status 'todo'}}
@@ -72,7 +81,6 @@
                                 {{/each}}
                             </div> --}}
                         {{!-- {{/each}} --}}
-                    {{/if}}
                 </div>
             </div>
             <div class="modal" tabindex="-1" role="dialog" id="addCard">
@@ -100,9 +108,6 @@
                                         {{#each column_title}}
                                             <option value={{@key}}>{{this}}</option>
                                         {{/each}}
-                                        {{!-- <option value="todo" selected>To Do</option>
-                                        <option value="in_progress">In Progress</option>
-                                        <option value="done">Completed</option> --}}
                                     </select>
                                     <label>Status</label>
                                 </div>
@@ -130,6 +135,9 @@
                                     <input type="hidden" id="card_id" name="card_id" />
                                 </div>
                                 <div class="input-field">
+                                    <input type="hidden" id="board_id" name="board_id" />
+                                </div>
+                                <div class="input-field">
                                     <input type="text" id="card_title" name="update_card_title" required />
                                     <label>Task</label>
                                 </div>
@@ -139,9 +147,9 @@
                                 </div>
                                 <div class="input-field" >
                                     <select name="update_card_status" id="card_status" required>
-                                        <option value="todo" selected>To Do</option>
-                                        <option value="in_progress">In Progress</option>
-                                        <option value="done">Completed</option>
+                                        {{#each column_title}}
+                                            <option value={{@key}}>{{this}}</option>
+                                        {{/each}}
                                     </select>
                                     <label>Status</label>
                                 </div>

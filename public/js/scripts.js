@@ -30,11 +30,17 @@ $(document).ready(function(){
 
 $('.edit-card').click(function() {
     var card_id = $(this).parent().data('card-id')
+    var board_id = ''
+    if ($('body.kanban-board').attr('data-board-id')) {
+        board_id = $('body.kanban-board').data('board-id')
+    }
     $('#editCard #card_id').val(card_id)
+    $('#editCard #board_id').val(board_id)
     $.ajax({
         url: '/fetch/card',
         data: {
-            id: card_id
+            id: card_id,
+            board_id: board_id
         },
         success: function(result) {
             $('#card_title').val(result.card.title).focus().blur()
