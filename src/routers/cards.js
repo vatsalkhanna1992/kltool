@@ -63,8 +63,8 @@ router.post('/update/card', auth, async (req, res) => {
 router.delete('/remove/card', auth, async (req, res) => {
     const card_id = req.body.card_id
     const board_id = req.body.board_id
-    try {
-        if (board_id !== '') {
+    if (board_id !== '') {
+        try {
             await Boards.findOneAndUpdate({ _id: board_id }, {
                 $pull: {
                     'cards': {
@@ -76,15 +76,15 @@ router.delete('/remove/card', auth, async (req, res) => {
                 card_id,
                 board_id
             })
-        } else {
-            await Cards.findByIdAndDelete(card_id)
-            res.send({
-                card_id
+        } catch (e) {
+            res.status(400).send({
+                error: 'Card cannot be deleted.'
             })
         }
-    } catch (e) {
-        res.status(400).send({
-            error: 'Card cannot be deleted.'
+    } else {
+        await Cards.findByIdAndDelete(card_id)
+        res.send({
+            card_id
         })
     }
 })
@@ -129,17 +129,33 @@ router.get('/fetch/card', auth, async (req, res) => {
 router.get('/update/card', auth, async (req, res) => {
     const card_id = req.query.id
     const status = req.query.status
+    const board_id = req.query.board_id
     let completed = false
     if (status === 'done') {
         completed = true
     }
-    try {
-        const card = await Cards.findByIdAndUpdate(card_id, {status, completed})
-        res.send({
-            card
-        })
-    } catch (e) {
-        res.render('kanban')
+    if (!board_id) {
+        try {
+            const card = await Cards.findByIdAndUpdate(card_id, {status, completed})
+            res.send({
+                card
+            })
+        } catch (e) {
+            res.render('kanban')
+        }
+    } else {
+        try {
+            const board = await Boards.findOneAndUpdate({ _id: board_id, 'cards._id': card_id}, {
+                $set: {
+                    'cards.$.status': status
+                }
+            })
+            res.send({
+                board
+            })
+        } catch (e) {
+            res.render('board')
+        }
     }
 })
 

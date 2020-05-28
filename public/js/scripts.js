@@ -243,14 +243,19 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-    ev.dataTransfer.setData('card', ev.target.id);
+    var target = ev.target
+    ev.dataTransfer.setData('card', target.id)
+    var board_id = $(target).parent().attr('id')
+    if (board_id) {
+        ev.dataTransfer.setData('board', board_id)
+    }
 }
 
 function drop(event, element) {
-    console.log(element)
     event.preventDefault();
-    var data = event.dataTransfer.getData('card');
-    element.appendChild(document.getElementById(data));
+    var data = event.dataTransfer.getData('card')
+    var board_id = event.dataTransfer.getData('board')
+    element.appendChild(document.getElementById(data))
     var card_id = data.substring(5)
     var status = 'todo'
     if ($(element).hasClass('inprogress')) {
@@ -258,16 +263,28 @@ function drop(event, element) {
     }
     else if ($(element).hasClass('completed')) {
         status = 'done'
+    } else if ($(element).attr('class').includes('column')) {
+        var classes = $(element).attr('class').split(' ')
+        classes.forEach(cls => {
+            if (cls.includes('column')) {
+                status = cls.substring(7)
+            }
+        });
     }
     $.ajax({
         url: '/update/card',
         method: 'GET',
         data: {
             id: card_id,
-            status: status
+            status: status,
+            board_id: board_id
         },
         success: function(response) {
-            window.location.href = "/kanban-board";
+            if (response.card) {
+                window.location.href = "/kanban-board";
+            } else {
+                window.location.href = "/board/" + board_id;
+            }
         }
     })
 }
