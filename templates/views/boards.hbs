@@ -14,17 +14,19 @@
                 {{>header}}
             </div>
             <div class="container">
-                <div class="col-12">
-                    <div class="message">{{{message}}}</div>
-                </div>
-                <div class="col-12">
-                    <div class="error">{{{error}}}</div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="message">{{{message}}}</div>
+                    </div>
+                    <div class="col-12">
+                        <div class="error">{{{error}}}</div>
+                    </div>
                 </div>
             </div>
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <button class="kltool-button" data-toggle="modal" data-target="#addBoard">Create a new board</button>
+                        <button class="kltool-button" data-toggle="modal" data-target="#addBoard">Add board</button>
                     </div>
                 </div>
             </div>
@@ -57,12 +59,13 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            {{!-- <div class="input-field">
-                                <input type="hidden" id="card_id" name="card_id" />
-                            </div> --}}
                             <div class="input-field">
                                 <input type="text" id="board_title" name="board_title" required />
                                 <label>Title</label>
+                            </div>
+                            <div class="input-field">
+                                <input type="text" id="board_description" name="board_description" required />
+                                <label>Description</label>
                             </div>
                             <div class="input-field">
                                 <select name="board_layout" id="board_layout" required>

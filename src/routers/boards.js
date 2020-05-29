@@ -79,7 +79,7 @@ router.get('/boards', auth, async (req, res) => {
         const boards = await Boards.find({username})
         if (!boards.length) {
             return res.render('boards', {
-                message: "You don't have any board. Create a board <a href='/create/board'>now</a>."
+                message: "You don't have any board. Create a board now."
             })
         }
         res.render('boards', {
