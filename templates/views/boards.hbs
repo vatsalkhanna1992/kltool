@@ -8,7 +8,7 @@
         {{>general_css_js}}
         {{>materialize}}
     </head>
-    <body class="dashboard">
+    <body class="boards">
         <div class="content">
             <div class="container-fluid">
                 {{>header}}
@@ -25,16 +25,13 @@
                 <div class="row">
                     {{#each boards}}
                         <div class="col-lg-6 col-12 card-layout">
-                            <div class="card deep-purple lighten-2 darken-1">
+                            <div class="card deep-purple lighten-2 darken-1">  
+                                <div class="card-content white-text">
+                                    <span class="card-title">{{this.board_title}}</span>
+                                    <p>{{this.board_description}}</p>
+                                </div>
                                 <div class="card-action">
-                                    <a href="/board/{{this.id}}">
-                                        <div class="card-content white-text">
-                                            <span class="card-title">{{this.board_title}}</span>
-                                        </div>
-                                        <div class="card-content white-text">
-                                            <span class="card-description">{{this.board_description}}</span>
-                                        </div>
-                                    </a>
+                                    <a href="/board/{{this.id}}">Visit board</a>
                                 </div>
                             </div>
                         </div>

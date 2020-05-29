@@ -282,6 +282,11 @@ textarea.materialize-textarea:focus {
     color: #ffab40;
 }
 
+.container-scroll {
+    overflow-x: auto !important;
+    min-height: 600px;
+}
+
 .container-scroll .row div {
     max-width: unset !important;
     flex: unset !important;
@@ -425,6 +430,10 @@ p.note_title {
     color: #ffd8a6;
 }
 
+.boards .card {
+    height: 170px;
+}
+
 @media only screen and (max-width: 767px) {
     .notes {
         overflow-y: scroll;
@@ -438,6 +447,10 @@ p.note_title {
 
     .content {
         min-height: 775px;
+    }
+
+    .boards .card .card-title {
+        font-size: 20px;
     }
 }
 

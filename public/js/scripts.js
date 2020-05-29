@@ -4,16 +4,22 @@ $(document).ready(function() {
     $('.kanban-board select').formSelect();
     $('#board_layout').formSelect();
     $(".dropdown-trigger").dropdown();
+    boardStyling()
+})
 
+var boardStyling = function() {
     if ($('body.kanban-board').length > 0) {
         var container_width = $('.container-scroll .row').width()
-        var column_width = container_width/3
+        var column_width = container_width
+        if ($(window).width() >= 768) {
+            column_width = container_width/3
+        }
         var no_of_columns = $('.container-scroll .row.column-heading-row div').length
         var total_width = column_width * no_of_columns
         $('.container-scroll .row').width(total_width)
         $('.container-scroll .row div').width(column_width - 30)
     }
-})
+}
 
 $('.input-field label').click(function() {
     $(this).siblings('input').focus()
