@@ -288,8 +288,6 @@ function drop(event, element) {
         success: function(response) {
             if (response.card) {
                 window.location.href = "/kanban-board";
-            } else {
-                window.location.href = "/board/" + board_id;
             }
         }
     })

@@ -21,6 +21,7 @@
 .header .brand-logo {
     padding-left: 10px;
     color: #ffd8a6;
+    font-family: "LeckerliOne";
 }
 
 .header #dropdown button {
@@ -50,7 +51,6 @@
 
 .header a {
     color: #ffd8a6;
-    font-family: "LeckerliOne";
 }
 
 .header a:hover {
