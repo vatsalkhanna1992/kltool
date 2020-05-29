@@ -23,9 +23,16 @@
             </div>
             <div class="container">
                 <div class="row">
+                    <div class="col-12">
+                        <button class="kltool-button" data-toggle="modal" data-target="#addBoard">Create a new board</button>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
                     {{#each boards}}
                         <div class="col-lg-6 col-12 card-layout">
-                            <div class="card deep-purple lighten-2 darken-1">  
+                            <div class="card deep-purple lighten-2 darken-1">
                                 <div class="card-content white-text">
                                     <span class="card-title">{{this.board_title}}</span>
                                     <p>{{this.board_description}}</p>
