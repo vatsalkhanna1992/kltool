@@ -1,3 +1,8 @@
+@font-face {
+    font-family: LeckerliOne;
+    src: url(../font/LeckerliOne-Regular.ttf);
+}
+
 .logo a,
 .kltool-text,
 .header .sidenav a,
@@ -45,6 +50,7 @@
 
 .header a {
     color: #ffd8a6;
+    font-family: "LeckerliOne";
 }
 
 .header a:hover {
