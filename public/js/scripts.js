@@ -242,6 +242,12 @@ $('form#register-user').submit(function() {
     return false
 })
 
+// Disable button on click.
+$('.onclick-disable').click(function() {
+    setTimeout(() => {
+        $(this).attr('disabled', 'disabled')
+    }, 1000)
+})
 
 // Drag and drop feature on Kanban Board.
 function allowDrop(ev) {
