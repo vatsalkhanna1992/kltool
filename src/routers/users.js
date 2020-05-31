@@ -125,15 +125,12 @@ router.post('/user/login', async (req, res) => {
         const user = await Users.findByCredentials(req.body.username, req.body.password)
         const token = await user.generateAuthToken()
         res.cookie('auth', token)
-        res.render('dashboard', {
+        /* res.render('dashboard', {
             firstName: user.first_name,
             lastName: user.last_name
-        })
-        //res.send({user, token})
-    } catch (e) {
-        /* res.status(400).send({
-            error: 'Unable to login.'
         }) */
+        res.status(301).redirect('/')
+    } catch (e) {
         res.status(400).render('index', {
             error: 'Invalid username or password.'
         })

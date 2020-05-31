@@ -23,6 +23,7 @@ var boardStyling = function() {
 
 $('.input-field label').click(function() {
     $(this).siblings('input').focus()
+    $(this).siblings('textarea').focus()
 })
 
 document.addEventListener('DOMContentLoaded', function() {
