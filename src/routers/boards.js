@@ -5,6 +5,19 @@ const auth = require('../middleware/auth')
 const router = new express.Router()
 const hbs = require('hbs')
 
+// Fetch Progress Board for a user.
+router.get('/progress-board', auth, async (req, res) => {
+    const username = req.user.username
+    try {
+        const cards = await Cards.find({ username })
+        res.render('kanban', {
+            cards
+        })
+    } catch (e) {
+        res.render('kanban')
+    }
+})
+
 // Add new board.
 router.post('/add/board', auth, async (req, res) => {
     const username = req.user.username
@@ -57,11 +70,7 @@ router.get('/board/:id', auth, async (req, res) => {
             layout = '12'
         }
         res.render('board', {
-            board_id,
             col_layout: layout,
-            board_title: board.board_title,
-            column_title: board.column_title,
-            cards: board.cards,
             board
         })
     } catch (e) {

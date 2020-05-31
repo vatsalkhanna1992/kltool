@@ -290,6 +290,9 @@ textarea.materialize-textarea:focus {
 
 .container-scroll {
     overflow-x: auto !important;
+}
+
+.container-scroll .column-card-row {
     min-height: 600px;
 }
 

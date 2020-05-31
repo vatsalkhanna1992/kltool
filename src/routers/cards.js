@@ -19,7 +19,7 @@ router.post('/add/card', auth, async (req, res) => {
     try {
         const card = new Cards({username, title, description, status, completed})
         await card.save()
-        res.status(301).redirect('/kanban-board')
+        res.status(301).redirect('/progress-board')
     } catch (e) {
         res.status(400).send({
             error: 'Card cannot be added.'
@@ -50,7 +50,7 @@ router.post('/update/card', auth, async (req, res) => {
             res.status(301).redirect('/board/' + board_id)
         } else {
             await Cards.findByIdAndUpdate(card_id, {title, description, status, completed})
-            res.status(301).redirect('/kanban-board')
+            res.status(301).redirect('/progress-board')
         }
     } catch (e) {
         res.status(400).send({
@@ -86,19 +86,6 @@ router.delete('/remove/card', auth, async (req, res) => {
         res.send({
             card_id
         })
-    }
-})
-
-// Fetch Kanban Board for a user.
-router.get('/kanban-board', auth, async (req, res) => {
-    const username = req.user.username
-    try {
-        const cards = await Cards.find({ username })
-        res.render('kanban', {
-            cards
-        })
-    } catch (e) {
-        res.render('kanban')
     }
 })
 

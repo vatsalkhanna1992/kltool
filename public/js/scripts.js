@@ -69,7 +69,7 @@ $('.kanban-board .states .state').click(function() {
             status: status
         },
         success: function(result) {
-            window.location.href = "/kanban-board";
+            window.location.href = "/progress-board";
         }
     })
 })
@@ -93,7 +93,7 @@ $('.remove-card').click(function(e) {
             if (Object.keys(result).length == 2) {
                 window.location.href = '/board/' + result.board_id;
             } else {
-                window.location.href = '/kanban-board';
+                window.location.href = '/progress-board';
             }
         }
     })
@@ -246,7 +246,7 @@ $('form#register-user').submit(function() {
 $('.onclick-disable').click(function() {
     setTimeout(() => {
         $(this).attr('disabled', 'disabled')
-    }, 1000)
+    }, 200)
 })
 
 // Drag and drop feature on Kanban Board.
@@ -293,7 +293,7 @@ function drop(event, element) {
         },
         success: function(response) {
             if (response.card) {
-                window.location.href = "/kanban-board";
+                window.location.href = "/progress-board";
             }
         }
     })
