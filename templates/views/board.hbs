@@ -42,7 +42,7 @@
                     {{#columnsLength col_layout '3'}}
                         {{#each board as |board|}}
                             {{#each board.column_title as |column_title|}}
-                                <div class="col-md-4 cards column-{{@index}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                <div class="col-md-4 cards column-{{@index}}" id="{{board._id}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
                                     {{#each board.cards as |card|}}
                                         {{#cardsStatus card.status @../index}}
                                             {{>card}}
@@ -68,7 +68,7 @@
                     {{#columnsLength col_layout '12'}}
                         {{#each board as |board|}}
                             {{#each board.column_title as |column_title|}}
-                                <div class="col-md-1 cards column-{{@index}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                <div class="col-md-1 cards column-{{@index}}" id="{{board._id}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
                                     {{#each board.cards as |card|}}
                                         {{#cardsStatus card.status @../index}}
                                             {{>card}}
