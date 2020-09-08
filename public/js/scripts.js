@@ -104,11 +104,14 @@ $('.remove-card').click(function(e) {
 $('body').on('click', '.note', function(e) {
     e.preventDefault()
     var note_id = $(this).data('note-id')
+    $('#note_title').val('')
+    $('#note_description .ql-editor').text('Loading...')
     $.ajax({
         url: '/fetch/note',
         data: {
             id: note_id
         },
+        type: 'GET',
         success: function(result) {
             $('#note_title').val(result.note.title).focus().blur()
             if ($(window).width() < 768) {
@@ -116,8 +119,8 @@ $('body').on('click', '.note', function(e) {
                     scrollTop: $("#note_title").offset().top
                 }, 1000);
             }
+            $('#note_description .ql-editor').html(result.note.description)
             $('.message').text('')
-            $('.ql-editor').html(result.note.description)
             $('form.add-note').attr('data-note-id', result.note._id)
             $('form.add-note button.save-note').text('Update note')
         }
