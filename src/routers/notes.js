@@ -122,16 +122,13 @@ const fetchNotesWithCache = (note_id, callback) => {
     try {
         redis_client.get(note_id, async (err, note_from_cache) => {
             if (err) {
-                console.log(0)
                 callback(null)
             }
             else if (note_from_cache) {
-                console.log(1)
                 callback(JSON.parse(note_from_cache))
             }
             else {
                 note = await Notes.findById(note_id)
-                console.log(2)
                 redis_client.setex(note_id, 3600, JSON.stringify(note), function(err, response) {
                     if (err) {
                         console.log('Cannot save note into cache.')
