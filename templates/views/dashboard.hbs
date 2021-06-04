@@ -25,28 +25,51 @@
                     <div class="col-lg-6 col-12 card-layout">
                         <div class="card deep-purple lighten-2 darken-1">
                             <div class="card-content white-text">
-                            <span class="card-title">Personal Kanban Board</span>
-                            <p>This tool provides a feature to create your personal Kanban board to manage your day to day tasks.</p>
+                                <span class="card-title">Personal Kanban Board</span>
+                                <p>This tool provides a feature to create your personal kanban board to manage your day to day tasks.</p>
                             </div>
                             <div class="card-action">
-                            <a href="/kanban-board">Add your tasks now</a>
+                                <a href="/boards" data-toggle="modal" data-target="#addBoard">Create board</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 col-12 card-layout">
                         <div class="card deep-purple lighten-2 darken-1">
                             <div class="card-content white-text">
-                            <span class="card-title">Learning Notes</span>
-                            <p>You can save all your learnings here. This tool provides a feature to add, edit or remove your notes.</p>
+                                <span class="card-title">Check your boards</span>
+                                <p>You can always check your boards and manage tasks. Visit all the boards created, by clicking on the below link.</p>
                             </div>
                             <div class="card-action">
-                            <a href="/notes">Add your notes now</a>
+                                <a href="/boards">Visit all boards</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 card-layout">
+                        <div class="card deep-purple lighten-2 darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">Progress board</span>
+                                <p>We have also created a ready-made personal kanban board for you, which you can use to manage your tasks.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="/progress-board">Check board</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-12 card-layout">
+                        <div class="card deep-purple lighten-2 darken-1">
+                            <div class="card-content white-text">
+                                <span class="card-title">Notes</span>
+                                <p>You can save all your learnings here. This tool provides a feature to add, edit or remove your notes.</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="/notes">Add your notes now</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {{>create_board_modal}}
         {{>footer}}
         <script src="/js/scripts.js"></script>
     </body>

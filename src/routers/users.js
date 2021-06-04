@@ -4,6 +4,7 @@ const Notes = require('../models/notes')
 const Users = require('../models/users')
 const auth = require('../middleware/auth')
 const bcrypt = require('bcryptjs')
+const Cookies = require('cookies');
 const { sendGreetingMail, sendNewPassword } = require('../emails/account')
 
 const router = new express.Router()
@@ -124,16 +125,14 @@ router.post('/user/login', async (req, res) => {
     try {
         const user = await Users.findByCredentials(req.body.username, req.body.password)
         const token = await user.generateAuthToken()
-        res.cookie('auth', token)
-        res.render('dashboard', {
+        cookies = new Cookies(req, res);
+        cookies.set('auth', token, { httpOnly: true });
+        /* res.render('dashboard', {
             firstName: user.first_name,
             lastName: user.last_name
-        })
-        //res.send({user, token})
-    } catch (e) {
-        /* res.status(400).send({
-            error: 'Unable to login.'
         }) */
+        res.status(301).redirect('/')
+    } catch (e) {
         res.status(400).render('index', {
             error: 'Invalid username or password.'
         })
@@ -146,7 +145,8 @@ router.post('/user/registration', async (req, res) => {
     try {
         await user.save()
         const token = await user.generateAuthToken()
-        res.cookie('auth', token)
+        cookies = new Cookies(req, res);
+        cookies.set('auth', token, { httpOnly: true });
         try {
             await sendGreetingMail(user.username, user.first_name)
         } catch(e) {
@@ -169,7 +169,7 @@ router.post('/user/registration', async (req, res) => {
             }
             if (err.password) {
                 res.status(400).send({
-                    error: 'Password length should be greater than 8.'
+                    error: 'Please enter valid password and password length should be greater than 8.'
                 })
                 return
             }

@@ -2,6 +2,7 @@ const express = require('express')
 const Notes = require('../models/notes')
 const auth = require('../middleware/auth')
 const router = new express.Router()
+const redis = require('redis')
 
 // Fetch notes for the user.
 router.get('/notes', auth, async (req, res) => {
@@ -22,15 +23,16 @@ router.get('/notes', auth, async (req, res) => {
 
 // Fetch a note.
 router.get('/fetch/note', auth, async (req, res) => {
+    //const redis_client = redis.createClient(6379)
     const note_id = req.query.id
-    try {
-        const note = await Notes.findById(note_id)
-        res.send({
-            note
-        })
-    } catch (e) {
-        res.render('notes')
-    }
+    fetchNotesWithCache(note_id, (note) => {
+        if (note) {
+            res.send({
+                note
+            })
+            res.end()
+        }
+    })
 })
 
 // Add a note.
@@ -113,5 +115,31 @@ router.get('/search/notes', auth, async (req, res) => {
         })
     }
 })
+
+const fetchNotesWithCache = (note_id, callback) => {
+    const redis_client = redis.createClient(process.env.REDIS_URL)
+    var note = ''
+    try {
+        redis_client.get(note_id, async (err, note_from_cache) => {
+            if (err) {
+                callback(null)
+            }
+            else if (note_from_cache) {
+                callback(JSON.parse(note_from_cache))
+            }
+            else {
+                note = await Notes.findById(note_id)
+                redis_client.setex(note_id, 3600, JSON.stringify(note), function(err, response) {
+                    if (err) {
+                        console.log('Cannot save note into cache.')
+                    }
+                })
+                callback(note)
+            }
+        })
+    } catch (e) {
+        res.render('notes')
+    }
+}
 
 module.exports = router

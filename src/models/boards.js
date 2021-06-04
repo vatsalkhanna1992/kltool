@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
+const { CardSchema } = require('./cards')
 
-const cardSchema = new mongoose.Schema({
+const boardSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -13,31 +14,26 @@ const cardSchema = new mongoose.Schema({
             }
         }
     },
-    title: {
+    board_title: {
         type: String,
         required: true
     },
-    description: {
-        type: String
-    },
-    status: {
+    board_description: {
         type: String,
-        required: true,
-        default: 'todo',
-        enum: ['todo', 'in_progress', 'done']
+        required: true
     },
-    completed: {
-        type: Boolean,
-        required: true,
-        default: false
-    }
+    board_layout: {
+        type: Number,
+        default: 3
+    },
+    column_title: {
+        type: Array
+    },
+    cards: [CardSchema]
 }, {
     timestamps: true
 })
 
-const Cards = mongoose.model('Cards', cardSchema)
+const Boards = mongoose.model('Boards', boardSchema)
 
-module.exports = {
-    Cards,
-    CardSchema: cardSchema
-}
+module.exports = Boards

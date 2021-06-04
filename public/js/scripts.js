@@ -1,12 +1,29 @@
 $ = jQuery
 
-$(document).ready(function(){
+$(document).ready(function() {
     $('.kanban-board select').formSelect();
+    $('#board_layout').formSelect();
     $(".dropdown-trigger").dropdown();
+    boardStyling()
 })
+
+var boardStyling = function() {
+    if ($('body.kanban-board').length > 0) {
+        var container_width = $('.container-scroll .row').width()
+        var column_width = container_width
+        if ($(window).width() >= 768) {
+            column_width = container_width/3
+        }
+        var no_of_columns = $('.container-scroll .row.column-heading-row div').length
+        var total_width = column_width * no_of_columns
+        $('.container-scroll .row').width(total_width)
+        $('.container-scroll .row div').width(column_width - 30)
+    }
+}
 
 $('.input-field label').click(function() {
     $(this).siblings('input').focus()
+    $(this).siblings('textarea').focus()
 })
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -18,13 +35,20 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
 });
 
+// Edit card.
 $('.edit-card').click(function() {
     var card_id = $(this).parent().data('card-id')
+    var board_id = ''
+    if ($('body.kanban-board').attr('data-board-id')) {
+        board_id = $('body.kanban-board').data('board-id')
+    }
     $('#editCard #card_id').val(card_id)
+    $('#editCard #board_id').val(board_id)
     $.ajax({
         url: '/fetch/card',
         data: {
-            id: card_id
+            id: card_id,
+            board_id: board_id
         },
         success: function(result) {
             $('#card_title').val(result.card.title).focus().blur()
@@ -46,7 +70,32 @@ $('.kanban-board .states .state').click(function() {
             status: status
         },
         success: function(result) {
-            window.location.href = "/kanban-board";
+            window.location.href = "/progress-board";
+        }
+    })
+})
+
+// Delete card.
+$('.remove-card').click(function(e) {
+    e.preventDefault()
+    var card_id = $(this).parent().data('card-id')
+    var board_id = ''
+    if ($('body.kanban-board').attr('data-board-id')) {
+        board_id = $('body.kanban-board').data('board-id')
+    }
+    $.ajax({
+        url: '/remove/card',
+        method: 'DELETE',
+        data: {
+            card_id: card_id,
+            board_id: board_id
+        },
+        success: function(result) {
+            if (Object.keys(result).length == 2) {
+                window.location.href = '/board/' + result.board_id;
+            } else {
+                window.location.href = '/progress-board';
+            }
         }
     })
 })
@@ -55,11 +104,14 @@ $('.kanban-board .states .state').click(function() {
 $('body').on('click', '.note', function(e) {
     e.preventDefault()
     var note_id = $(this).data('note-id')
+    $('#note_title').val('')
+    $('#note_description .ql-editor').text('Loading...')
     $.ajax({
         url: '/fetch/note',
         data: {
             id: note_id
         },
+        type: 'GET',
         success: function(result) {
             $('#note_title').val(result.note.title).focus().blur()
             if ($(window).width() < 768) {
@@ -67,8 +119,8 @@ $('body').on('click', '.note', function(e) {
                     scrollTop: $("#note_title").offset().top
                 }, 1000);
             }
+            $('#note_description .ql-editor').html(result.note.description)
             $('.message').text('')
-            $('.ql-editor').html(result.note.description)
             $('form.add-note').attr('data-note-id', result.note._id)
             $('form.add-note button.save-note').text('Update note')
         }
@@ -194,6 +246,12 @@ $('form#register-user').submit(function() {
     return false
 })
 
+// Disable button on click.
+$('.onclick-disable').click(function() {
+    setTimeout(() => {
+        $(this).attr('disabled', 'disabled')
+    }, 200)
+})
 
 // Drag and drop feature on Kanban Board.
 function allowDrop(ev) {
@@ -201,14 +259,19 @@ function allowDrop(ev) {
 }
 
 function drag(ev) {
-    ev.dataTransfer.setData('card', ev.target.id);
+    var target = ev.target
+    ev.dataTransfer.setData('card', target.id)
+    var board_id = $(target).parent().attr('id')
+    if (board_id) {
+        ev.dataTransfer.setData('board', board_id)
+    }
 }
 
 function drop(event, element) {
-    console.log(element)
     event.preventDefault();
-    var data = event.dataTransfer.getData('card');
-    element.appendChild(document.getElementById(data));
+    var data = event.dataTransfer.getData('card')
+    var board_id = event.dataTransfer.getData('board')
+    element.appendChild(document.getElementById(data))
     var card_id = data.substring(5)
     var status = 'todo'
     if ($(element).hasClass('inprogress')) {
@@ -216,16 +279,26 @@ function drop(event, element) {
     }
     else if ($(element).hasClass('completed')) {
         status = 'done'
+    } else if ($(element).attr('class').includes('column')) {
+        var classes = $(element).attr('class').split(' ')
+        classes.forEach(cls => {
+            if (cls.includes('column')) {
+                status = cls.substring(7)
+            }
+        });
     }
     $.ajax({
         url: '/update/card',
         method: 'GET',
         data: {
             id: card_id,
-            status: status
+            status: status,
+            board_id: board_id
         },
         success: function(response) {
-            window.location.href = "/kanban-board";
+            if (response.card) {
+                window.location.href = "/progress-board";
+            }
         }
     })
 }
@@ -258,4 +331,21 @@ $('#search-notes').keyup(function() {
             }, 2000);
         }
     })
+})
+
+// Select layout for new board.
+$('#board_layout').change(function() {
+    var layouts = $(this).val()
+    $('#addBoard .column_title').each(function() {
+        if (!$(this).hasClass('d-none')) {
+            $(this).addClass('d-none')
+        }
+        if ($(this).find('input').attr('required')) {
+            $(this).find('input').removeAttr('required')
+        }
+    })
+    for(var i = 0; i < layouts; i++) {
+        $('input[name="column[' + i + ']"').parent().removeClass('d-none')
+        $('input[name="column[' + i + ']"').prop('required', true)
+    }
 })

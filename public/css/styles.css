@@ -1,3 +1,8 @@
+@font-face {
+    font-family: LeckerliOne;
+    src: url(../font/LeckerliOne-Regular.ttf);
+}
+
 .logo a,
 .kltool-text,
 .header .sidenav a,
@@ -16,6 +21,7 @@
 .header .brand-logo {
     padding-left: 10px;
     color: #ffd8a6;
+    font-family: "LeckerliOne";
 }
 
 .header #dropdown button {
@@ -243,6 +249,7 @@ textarea.materialize-textarea:focus {
     padding-left: 10px;
     padding-right: 5px;
     color: #7c4dff;
+    padding-bottom: 20px;
 }
 
 .kanban-board .cards .card .operations {
@@ -279,6 +286,27 @@ textarea.materialize-textarea:focus {
 .kanban-board .cards .card .states .state:hover,
 .kanban-board .cards .card .operations i:hover {
     color: #ffab40;
+}
+
+.container-scroll {
+    overflow-x: auto !important;
+}
+
+.container-scroll .column-card-row {
+    min-height: 600px;
+}
+
+.container-scroll .row div {
+    max-width: unset !important;
+    flex: unset !important;
+}
+
+.width_200 {
+    width: 200% !important;
+}
+
+.width_400 {
+    width: 400% !important;
 }
 
 .todo .todo,
@@ -411,6 +439,10 @@ p.note_title {
     color: #ffd8a6;
 }
 
+.boards .card {
+    height: 170px;
+}
+
 @media only screen and (max-width: 767px) {
     .notes {
         overflow-y: scroll;
@@ -424,6 +456,10 @@ p.note_title {
 
     .content {
         min-height: 775px;
+    }
+
+    .boards .card .card-title {
+        font-size: 20px;
     }
 }
 

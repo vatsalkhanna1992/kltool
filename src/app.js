@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const userRouter = require('./routers/users')
 const cardRouter = require('./routers/cards')
 const noteRouter = require('./routers/notes')
+const boardRouter = require('./routers/boards')
 require('./utils/dbconnect')
 const cookieParser = require('cookie-parser')
 const auth = require('./middleware/auth')
@@ -36,6 +37,7 @@ app.use('/quill', express.static(path.join(__dirname, '../node_modules/quill/dis
 app.use(userRouter)
 app.use(cardRouter)
 app.use(noteRouter)
+app.use(boardRouter)
 
 // Set views engine to use handlebars.
 app.set('view engine', 'hbs')

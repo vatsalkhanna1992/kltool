@@ -1,0 +1,92 @@
+
+<div class="modal" tabindex="-1" role="dialog" id="addBoard">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="/add/board">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Board</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-field">
+                        <input type="text" id="board_title" name="board_title" required />
+                        <label>Title</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="board_description" name="board_description" required />
+                        <label>Description</label>
+                    </div>
+                    <div class="input-field">
+                        <select name="board_layout" id="board_layout" required>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <label># of Columns</label>
+                    </div>
+                    <div class="input-field column_title">
+                        <input type="text" name="column[0]" maxlength="20" required>
+                        <label>Column 1 title</label>
+                    </div>
+                    <div class="input-field column_title">
+                        <input type="text" name="column[1]" maxlength="20" required>
+                        <label>Column 2 title</label>
+                    </div>
+                    <div class="input-field column_title">
+                        <input type="text" name="column[2]" maxlength="20" required>
+                        <label>Column 3 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[3]" maxlength="20">
+                        <label>Column 4 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[4]" maxlength="20">
+                        <label>Column 5 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[5]" maxlength="20">
+                        <label>Column 6 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[6]" maxlength="20">
+                        <label>Column 7 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[7]" maxlength="20">
+                        <label>Column 8 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[8]" maxlength="20">
+                        <label>Column 9 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[9]" maxlength="20">
+                        <label>Column 10 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[10]" maxlength="20">
+                        <label>Column 11 title</label>
+                    </div>
+                    <div class="input-field column_title d-none">
+                        <input type="text" name="column[11]" maxlength="20">
+                        <label>Column 12 title</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn kltool-button">Create Board</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

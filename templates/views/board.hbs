@@ -8,7 +8,7 @@
         {{>materialize}}
         <meta content="width=device-width, initial-scale=1" name="viewport" />
     </head>
-    <body class="kanban-board">
+    <body class="kanban-board" data-board-id={{board._id}}>
         <div class="content">
             <div class="container-fluid">
                 {{>header}}
@@ -16,57 +16,74 @@
             <div class="container">
                 <div class="row">
                     <div class="col s12">
-                        <h5 class="page_title">Board <button title="Add Card" type="button" data-toggle="modal" data-target="#addCard">+</button></h5>
+                        <h5 class="page_title">{{ board.board_title }} <button title="Add Card" type="button" data-toggle="modal" data-target="#addCard">+</button></h5>
                     </div>
                 </div>
-                <div class="row d-none d-sm-flex">
-                    <div class="col-md-4 todo">
-                        <h6>To Do</h6>
-                    </div>
-                    <div class="col-md-4 inprogress">
-                        <h6>In Progress</h6>
-                    </div>
-                    <div class="col-md-4 completed">
-                        <h6>Completed</h6>
-                    </div>
+            </div>
+            <div class="container container-scroll">
+                <div class="row column-heading-row text-center">
+                    {{#columnsLength col_layout '3'}}
+                        {{#each board.column_title}}
+                            {{>board_3}}
+                        {{/each}}
+                    {{/columnsLength}}
+                    {{#columnsLength col_layout '6'}}
+                        {{#each board.column_title}}
+                            {{>board_6}}
+                        {{/each}}
+                    {{/columnsLength}}
+                    {{#columnsLength col_layout '12'}}
+                        {{#each board.column_title}}
+                            {{>board_12}}
+                        {{/each}}
+                    {{/columnsLength}}
                 </div>
-                <div class="row">
-                    <div class="col-12 d-sm-none todo">
-                        <h6>To Do</h6>
-                    </div>
-                    <div class="col-12 col-md-4 todo cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-                        {{#each cards}}
-                            {{#cardsStatus this.status 'todo'}}
-                                {{>card}}
-                            {{/cardsStatus}}
+                <div class="row column-card-row">
+                    {{#columnsLength col_layout '3'}}
+                        {{#each board as |board|}}
+                            {{#each board.column_title as |column_title|}}
+                                <div class="col-md-4 cards column-{{@index}}" id="{{board._id}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                    {{#each board.cards as |card|}}
+                                        {{#cardsStatus card.status @../index}}
+                                            {{>card}}
+                                        {{/cardsStatus}}
+                                    {{/each}}
+                                </div>
+                            {{/each}}
                         {{/each}}
-                    </div>
-                    <div class="col-12 d-sm-none inprogress">
-                        <h6>In Progress</h6>
-                    </div>
-                    <div class="col-12 col-md-4 inprogress cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-                        {{#each cards}}
-                            {{#cardsStatus this.status 'in_progress'}}
-                                {{>card}}
-                            {{/cardsStatus}}
+                    {{/columnsLength}}
+                    {{#columnsLength col_layout '6'}}
+                        {{#each board as |board|}}
+                            {{#each board.column_title as |column_title|}}
+                                <div class="col-md-2 cards column-{{@index}}" id="{{board._id}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                    {{#each board.cards as |card|}}
+                                        {{#cardsStatus card.status @../index}}
+                                            {{>card}}
+                                        {{/cardsStatus}}
+                                    {{/each}}
+                                </div>
+                            {{/each}}
                         {{/each}}
-                    </div>
-                    <div class="col-12 d-sm-none completed">
-                        <h6>Completed</h6>
-                    </div>
-                    <div class="col-12 col-md-4 completed cards" ondrop="drop(event, this)" ondragover="allowDrop(event)">
-                        {{#each cards}}
-                            {{#cardsStatus this.status 'done'}}
-                                {{>card}}
-                            {{/cardsStatus}}
+                    {{/columnsLength}}
+                    {{#columnsLength col_layout '12'}}
+                        {{#each board as |board|}}
+                            {{#each board.column_title as |column_title|}}
+                                <div class="col-md-1 cards column-{{@index}}" id="{{board._id}}" ondrop="drop(event, this)" ondragover="allowDrop(event)">
+                                    {{#each board.cards as |card|}}
+                                        {{#cardsStatus card.status @../index}}
+                                            {{>card}}
+                                        {{/cardsStatus}}
+                                    {{/each}}
+                                </div>
+                            {{/each}}
                         {{/each}}
-                    </div>
+                    {{/columnsLength}}
                 </div>
             </div>
             <div class="modal" tabindex="-1" role="dialog" id="addCard">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <form method="post" action="/add/card">
+                        <form method="post" action="/new/card">
                             <div class="modal-header">
                                 <h5 class="modal-title">New Card</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -74,6 +91,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <input type="hidden" name="board_id" value={{board._id}} />
                                 <div class="input-field">
                                     <input type="text" name="card_title" required />
                                     <label>Task</label>
@@ -84,9 +102,9 @@
                                 </div>
                                 <div class="input-field">
                                     <select name="card_status" required>
-                                        <option value="todo" selected>To Do</option>
-                                        <option value="in_progress">In Progress</option>
-                                        <option value="done">Completed</option>
+                                        {{#each board.column_title}}
+                                            <option value={{@key}}>{{this}}</option>
+                                        {{/each}}
                                     </select>
                                     <label>Status</label>
                                 </div>
@@ -114,6 +132,9 @@
                                     <input type="hidden" id="card_id" name="card_id" />
                                 </div>
                                 <div class="input-field">
+                                    <input type="hidden" id="board_id" name="board_id" />
+                                </div>
+                                <div class="input-field">
                                     <input type="text" id="card_title" name="update_card_title" required />
                                     <label>Task</label>
                                 </div>
@@ -123,9 +144,9 @@
                                 </div>
                                 <div class="input-field" >
                                     <select name="update_card_status" id="card_status" required>
-                                        <option value="todo" selected>To Do</option>
-                                        <option value="in_progress">In Progress</option>
-                                        <option value="done">Completed</option>
+                                        {{#each board.column_title}}
+                                            <option value={{@key}}>{{this}}</option>
+                                        {{/each}}
                                     </select>
                                     <label>Status</label>
                                 </div>
