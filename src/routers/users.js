@@ -4,6 +4,7 @@ const Notes = require('../models/notes')
 const Users = require('../models/users')
 const auth = require('../middleware/auth')
 const bcrypt = require('bcryptjs')
+const Cookies = require('cookies');
 const { sendGreetingMail, sendNewPassword } = require('../emails/account')
 
 const router = new express.Router()
@@ -124,7 +125,8 @@ router.post('/user/login', async (req, res) => {
     try {
         const user = await Users.findByCredentials(req.body.username, req.body.password)
         const token = await user.generateAuthToken()
-        res.cookie('auth', token)
+        cookies = new Cookies(req, res);
+        cookies.set('auth', token, { httpOnly: true });
         /* res.render('dashboard', {
             firstName: user.first_name,
             lastName: user.last_name
@@ -143,7 +145,8 @@ router.post('/user/registration', async (req, res) => {
     try {
         await user.save()
         const token = await user.generateAuthToken()
-        res.cookie('auth', token)
+        cookies = new Cookies(req, res);
+        cookies.set('auth', token, { httpOnly: true });
         try {
             await sendGreetingMail(user.username, user.first_name)
         } catch(e) {
