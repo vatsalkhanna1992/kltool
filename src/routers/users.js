@@ -4,8 +4,9 @@ const Notes = require('../models/notes')
 const Users = require('../models/users')
 const auth = require('../middleware/auth')
 const bcrypt = require('bcryptjs')
-const Cookies = require('cookies');
+const Cookies = require('cookies')
 const { sendGreetingMail, sendNewPassword } = require('../emails/account')
+const Apps = require('../models/token')
 
 const router = new express.Router()
 
@@ -123,15 +124,36 @@ router.get('/user/:id', async (req, res) => {
 // User login.
 router.post('/user/login', async (req, res) => {
     try {
-        const user = await Users.findByCredentials(req.body.username, req.body.password)
-        const token = await user.generateAuthToken()
-        cookies = new Cookies(req, res);
-        cookies.set('auth', token, { httpOnly: true });
+        if (req.body.app_name && req.body.app_secret) {
+            const app_name = req.body.app_name
+            const app_secret = req.body.app_secret
+            const app = await Apps.findOne({ app_name })
+            const username = app.username
+            if (!app) {
+                res.status(403).send('Access Denied.')
+            }
+            else {
+                if (bcrypt.compare(app_secret, app.app_secret) && app_name === app.app_name) {
+                    const user = await Users.findOne({ username })
+                    const token = await user.generateAuthToken()
+                    res.json({
+                        'auth': token,
+                        'token_type': 'Bearer'
+                    })
+                }
+            }
+        }
+        else {
+            const user = await Users.findByCredentials(req.body.username, req.body.password)
+            const token = await user.generateAuthToken()
+            cookies = new Cookies(req, res);
+            cookies.set('auth', token, { httpOnly: true });
+            res.status(301).redirect('/')
+        }
         /* res.render('dashboard', {
             firstName: user.first_name,
             lastName: user.last_name
         }) */
-        res.status(301).redirect('/')
     } catch (e) {
         res.status(400).render('index', {
             error: 'Invalid username or password.'
