@@ -24,9 +24,9 @@ router.post('/add/board', auth, async (req, res) => {
     const board_title = req.body.board_title
     const board_description = req.body.board_description
     const board_layout = req.body.board_layout
-    var column_title = [];
+    var column_title = []
     for (var i = 0; i < board_layout; i++) {
-        var column = req.body['column[' + i + ']']
+        var column = req.body.column[i]
         if (column && column != '') {
             column_title[i] = column
         }
@@ -59,7 +59,7 @@ router.get('/board/:id', auth, async (req, res) => {
             })
         }
         var layout
-        let col_length = board.column_title.length
+        let col_length = board.board_layout
         if (col_length <= 3) {
             layout = '3'
         }
