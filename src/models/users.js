@@ -2,6 +2,9 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { Cards } = require("../models/cards");
+const Notes = require("../models/notes");
+const Boards = require("../models/boards");
 
 const userSchema = new mongoose.Schema(
   {
@@ -124,6 +127,29 @@ userSchema.pre("save", async function (next) {
   }
   next(); // Important. It lets the code know that pre-save is done and can move forward.
 });
+
+userSchema.pre('remove', async function (next) {
+  const user = this
+
+  const username = user.username;
+
+  // Delete all cards of this user.
+  await Cards.deleteMany({ username });
+  /* const cards = await Cards.find({ username });
+  if (cards) {
+    cards.forEach(async (card) => {
+      await Cards.findByIdAndDelete(card.id);
+    });
+  } */
+
+  // Delete all boards of this user.
+  await Boards.deleteMany({ username });
+
+  // Delete all notes of this user.
+  await Notes.deleteMany({ username });
+
+  next()
+})
 
 const Users = mongoose.model("Users", userSchema);
 
