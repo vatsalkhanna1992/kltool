@@ -1,5 +1,5 @@
 const express = require("express");
-const Cards = require("../models/cards");
+const { Cards } = require("../models/cards");
 const Notes = require("../models/notes");
 const Users = require("../models/users");
 const auth = require("../middleware/auth");
