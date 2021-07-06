@@ -67,6 +67,8 @@ router.patch("/update/note", auth, async (req, res) => {
       },
       { new: true, runValidators: true }
     );
+    const redis_client = redis.createClient(process.env.REDIS_URL)
+    redis_client.del(id)
     res.send({
       note,
     });

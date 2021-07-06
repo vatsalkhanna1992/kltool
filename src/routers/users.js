@@ -269,7 +269,8 @@ router.delete("/user/delete", auth, async (req, res) => {
     }
 
     // Delete user.
-    await Users.findByIdAndDelete(req.user.id);
+    //await Users.findByIdAndDelete(req.user.id);
+    await req.user.remove()
     res.send({
       message: "Your account is deleted. Thank you for using Kltool.",
     });
