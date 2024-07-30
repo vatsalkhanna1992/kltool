@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Register Apps | Kltool
+        </title>
+        {{>general_css_js}}
+        {{>materialize}}
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+    </head>
+    <body class="login-page">
+        <div class="content">
+            <div class="container-fluid">
+                {{>header}}
+            </div>
+            <div class="container">
+                <form method="post" action="/register-app">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="kltool-text">
+                                Register your application
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="error">{{error}}</div>
+                        </div>
+                        <div class="col-12">
+                            <div class="message">{{message}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="input-field">
+                                <input type="text" name="app_name" size="50" required>
+                                <label>Application Name</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <div class="input-field">
+                                <input type="text" name="app_url" size="50" required>
+                                <label>Application URL</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-12">
+                            <button type="submit" class="btn kltool-button">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {{>footer}}
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>

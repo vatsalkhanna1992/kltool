@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const { CardSchema } = require("./cards");
 
-const boardSchema = new mongoose.Schema(
+const appSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -15,28 +14,32 @@ const boardSchema = new mongoose.Schema(
         }
       },
     },
-    board_title: {
+    app_name: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true,
+    },
+    app_url: {
       type: String,
       required: true,
     },
-    board_description: {
+    app_secret: {
       type: String,
       required: true,
     },
-    board_layout: {
-      type: Number,
-      default: 3,
-    },
-    column_title: {
-      type: Array,
-    },
-    cards: [CardSchema],
   },
   {
     timestamps: true,
   }
 );
 
-const Boards = mongoose.model("Boards", boardSchema);
+appSchema.path("app_url").validate((val) => {
+  urlRegex =
+    /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/;
+  return urlRegex.test(val);
+}, "Invalid URL.");
 
-module.exports = Boards;
+const Apps = mongoose.model("Apps", appSchema);
+
+module.exports = Apps;

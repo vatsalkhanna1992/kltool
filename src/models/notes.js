@@ -1,29 +1,32 @@
-const mongoose = require('mongoose')
-const validator = require('validator')
+const mongoose = require("mongoose");
+const validator = require("validator");
 
-const noteSchema = new mongoose.Schema({
+const noteSchema = new mongoose.Schema(
+  {
     username: {
-        type: String,
-        required: true,
-        trim: true,
-        lowercase: true,
-        validate(value) {
-            if (!validator.isEmail(value)) {
-                throw new Error('Please enter valid email.')
-            }
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error("Please enter valid email.");
         }
+      },
     },
     title: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     description: {
-        type: String
-    }
-}, {
-    timestamps: true
-})
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Notes = mongoose.model('Notes', noteSchema)
+const Notes = mongoose.model("Notes", noteSchema);
 
-module.exports = Notes
+module.exports = Notes;
