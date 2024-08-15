@@ -7,7 +7,10 @@ const cardRouter = require("./routers/cards");
 const noteRouter = require("./routers/notes");
 const boardRouter = require("./routers/boards");
 const tokenRouter = require("./routers/token");
+const kltoolAIRouter = require("./routers/kltool_ai");
+const visionRouter = require("./routers/vision");
 require("./utils/dbconnect");
+// require("./utils/vision");
 const cookieParser = require("cookie-parser");
 const auth = require("./middleware/auth");
 
@@ -67,11 +70,14 @@ app.use(
   "/quill",
   express.static(path.join(__dirname, "../node_modules/quill/dist"))
 );
+
 app.use(userRouter);
 app.use(cardRouter);
 app.use(noteRouter);
 app.use(boardRouter);
 app.use(tokenRouter);
+app.use(kltoolAIRouter);
+app.use(visionRouter);
 
 // Set views engine to use handlebars.
 app.set("view engine", "hbs");

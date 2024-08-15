@@ -147,6 +147,7 @@ textarea.materialize-textarea,
 .input-field .select-wrapper span {
     color: #5e35b1 !important;
     border-bottom: 1px solid #7c4dff !important;
+    background-color: #fff;
 }
 
 input[type="text"]:focus,
@@ -159,10 +160,16 @@ textarea.materialize-textarea:focus {
 
 
 .input-field label:focus,
+.input-field label:focus-visible,
 .input-field label.active,
 .profile label:focus,
 .profile label.active {
     color: #5e35b1;
+    outline: none;
+}
+
+textarea:focus-visible {
+    outline: none;
 }
 
 .kltool-button {
@@ -315,12 +322,16 @@ textarea.materialize-textarea:focus {
     color: #ffd8a6 !important;
 }
 
-.note-board h5 {
+.note-board h5,
+.kltool-ai h5,
+.kltool-vision h5 {
     text-align: center;
 }
 
 .note-board h5 i,
-.note-board h5 span {
+.note-board h5 span,
+.kltool-ai h5 span,
+.kltool-vision h5 span {
     color: #5e35b1;
 }
 
@@ -441,6 +452,26 @@ p.note_title {
 
 .boards .card {
     height: 170px;
+}
+
+#loader {
+    display: none;
+}
+
+.visibility-hidden {
+    visibility: hidden;
+}
+
+.purple-heading {
+    color: #5e35b1;
+}
+
+.kltool-ai textarea {
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(244,244,244);
+    padding-top: 13px;
+    color: #5e35b1;
 }
 
 @media only screen and (max-width: 767px) {

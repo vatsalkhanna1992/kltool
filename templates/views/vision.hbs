@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            ChatGPT | Kltool
+        </title>
+        {{>general_css_js}}
+        {{>materialize}}
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+   </head>
+    <body class="kltool-vision">
+        <div class="content">
+            <div class="container-fluid">
+              {{>header}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="page_title">
+                          <span>Kltool Vision</span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="about">
+                    <p></p>Vision is a tool to read text from images. Add any images upto 10 MB size and fetch the text. Try now!</p>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <div class="message">{{message}}</div>
+                        <div class="error">{{{error}}}</div>
+                        <form action="/kltool-vision" method="post" enctype="multipart/form-data">
+                            <div class="input-field">
+                              <input type="file" name="upload_image" id="upload_image" accept="image/*" required />
+                            </div>
+                            <p></p>
+                            <button type="submit" class="kltool-button btn deep-purple darken-1 right">Convert</button>
+                        </form>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <p class="text-from-image">{{ textFromImage }}</p>
+                    </div>
+                  </div>
+                  <div class="row"></div>
+                  <div class="row"></div>
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      {{#if textFromImage}}
+                        <h6 class="purple-heading"><em>Do you want to search the above text? If yes, hit the copy button and try our <a class="purple-text" href="/kltool-ai" target="_blank">Kltool AI</a>.</em></h6>
+                        <button class="kltool-button btn deep-purple darken-1 copy-text">Copy</button>
+                        <p></p>
+                        <p class="message text-copied hide">Text Copied!</p>
+                      {{/if}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {{>footer}}
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </body>
+</html>

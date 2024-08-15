@@ -1,2 +1,6 @@
 node_modules/
 .env
+public/resources
+src/credentials
+public/tmp
+public/vision/uploads

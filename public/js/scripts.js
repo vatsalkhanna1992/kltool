@@ -349,3 +349,46 @@ $('#board_layout').change(function() {
         $('input[name="column[' + i + ']"').prop('required', true)
     }
 })
+
+// Search through chatgpt.
+$('form.chatgpt').submit(function(e) {
+    e.preventDefault();
+    var search_string = $('textarea[name="chatgpt"]').val();
+    $(this).find('textarea').val('');
+    $('.chatgpt-response .question').html('');
+    $('.chatgpt-response .answer').html('');
+    $('.chatgpt-response .question').html('<p><strong>'+ search_string +'<strong></p>');
+    $.ajax({
+        url: '/search/kltool-ai',
+        method: 'post',
+        data: {
+            search_string,
+        },
+        beforeSend: function() {
+            $("#loader").show();
+        },
+        success: function(response) {
+            if (response.result) {
+                $('.chatgpt-response .answer').html('<p>' + marked.parse(response.result) + '</p>');
+            }
+            $("#loader").hide();
+        }
+    })
+})
+
+$('.kltool-vision button.copy-text').on('click', function() {
+    var textToCopy = $('.kltool-vision .text-from-image').text();
+    const tempTextArea = $("<textarea>");
+    $('body').append(tempTextArea);
+    tempTextArea.val(textToCopy).select();
+    document.execCommand('copy');
+    tempTextArea.remove();
+    $('p.text-copied').removeClass('hide');
+});
+
+$('.kltool-ai form.chatgpt textarea').on('keypress', function(event) {
+    if (event.which === 13 && !event.shiftKey) {
+        event.preventDefault();
+        $(this).closest('form').submit();
+    }
+});

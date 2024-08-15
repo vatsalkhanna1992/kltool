@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            ChatGPT | Kltool
+        </title>
+        {{>general_css_js}}
+        {{>materialize}}
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+   </head>
+    <body class="kltool-ai">
+        <div class="content">
+            <div class="container-fluid">
+                {{>header}}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="page_title">
+                          <span>Kltool AI</span>
+                        </h5>
+                        <div class="message">{{message}}</div>
+                        <div class="error">{{{error}}}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                        <form class="chatgpt" id="chatgpt">
+                            <div class="input-field">
+                              {{!-- <input type="text" name="chatgpt" id="chatgpt" /> --}}
+                              <textarea placeholder="Ask me anything..." name="chatgpt" id="chatgpt"></textarea>
+                              {{!-- <label><em>Ask me anything...</em></label> --}}
+                            </div>
+                            <button type="submit" class="kltool-button btn deep-purple darken-1 right hide">Submit</button>
+                        </form>
+                    </div>
+                    <div class="col-12 col-md-12">
+                      <div class="chatgpt-response">
+                        <h6 class="question purple-heading"></h6>
+                        <div class="center" id="loader"><img src="/img/loader.gif" height="30" width="30" /></div>
+                        <div class="answer"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {{>footer}}
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </body>
+</html>
