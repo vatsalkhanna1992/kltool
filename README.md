@@ -1,5 +1,5 @@
 # kltool
-Provides personal Kanban board and learning tool.
+Provides personal Kanban board and learning tool. Built with NodeJs.
 
 This tool will help users to have their personal Kanban Board to manage their day to day task.
 It also provides feature to store their learnings on daily basis.
