@@ -9,14 +9,12 @@ router.get("/kltool-ai", auth, async (req, res) => {
 
 router.post("/search/kltool-ai", auth, async (req, res) => {
   const search_string = req.body.search_string;
-  const username = req.user.username;
 
   if (search_string) {
     try {
       const result = await kltoolAI(search_string);
       res.send({
-        result: result,
-        username: username
+        result: result
       })
     }
     catch (e) {

@@ -1,10 +1,48 @@
 $ = jQuery
 
+function setRecentSearches() {
+    if (sessionStorage.getItem('question_counter') > 0) {
+        let questions = [];
+        if ($('.kltool-ai .recent_search_list ul').length == 0) {
+            $('.kltool-ai .recent_search_list').html('<ul></ul>');
+        }
+        let c = 1;
+        let i = sessionStorage.getItem('question_counter')
+
+        while(c <= 3) {
+            let question = sessionStorage.getItem('question_' + i);
+            if ((question !== null && question !== undefined) && !questions.includes(question)) {
+                questions.push(question);
+                $('.kltool-ai .recent_search_list ul').append('<li><a class="copy-text" href="/">' + question + '</a></li>');
+            }
+            i--;
+            c++;
+        }
+    }
+}
+
 $(document).ready(function() {
     $('.kanban-board select').formSelect();
     $('#board_layout').formSelect();
     $(".dropdown-trigger").dropdown();
-    boardStyling()
+    boardStyling();
+
+    // Kltool AI.
+    if ($('.kltool-ai').length > 0) {
+        setRecentSearches();
+
+        $('.kltool-ai .recent_search_list ul li a.copy-text').on('click', function(e) {
+            e.preventDefault();
+            $('.kltool-ai form.chatgpt textarea').val($(this).text());
+        });
+
+        $('.kltool-ai form.chatgpt textarea').on('keypress', function(event) {
+            if (event.which === 13 && !event.shiftKey) {
+                event.preventDefault();
+                $(this).closest('form').submit();
+            }
+        });
+    }
 })
 
 var boardStyling = function() {
@@ -373,14 +411,18 @@ $('form.chatgpt').submit(function(e) {
                 $('.chatgpt-response .answer').html('<p>' + marked.parse(response.result) + '</p>');
             }
             $("#loader").hide();
-            let question_counter = + sessionStorage.getItem(response.username + '_question_counter');
-            if (!question_counter || question_counter == 3 || question_counter === undefined || question_counter === null) {
+            let question_counter = + sessionStorage.getItem('question_counter');
+            if (!question_counter || question_counter === undefined || question_counter === null) {
                 question_counter = 0;
+            }
+            if (question_counter > 3 && question_counter % 3 > 0) {
+                sessionStorage.removeItem('question_' + question_counter % 3);
             }
             question_counter = + question_counter;
             question_counter++;
-            sessionStorage.setItem(response.username + '_' + 'question_' + question_counter, search_string);
-            sessionStorage.setItem(response.username + '_question_counter', question_counter++);
+            sessionStorage.setItem('question_' + question_counter, search_string);
+            sessionStorage.setItem('question_counter', question_counter++);
+            //setRecentSearches();
         }
     })
 })
@@ -395,9 +437,3 @@ $('.kltool-vision button.copy-text').on('click', function() {
     $('p.text-copied').removeClass('hide');
 });
 
-$('.kltool-ai form.chatgpt textarea').on('keypress', function(event) {
-    if (event.which === 13 && !event.shiftKey) {
-        event.preventDefault();
-        $(this).closest('form').submit();
-    }
-});

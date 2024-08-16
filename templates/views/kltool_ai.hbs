@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>
-            ChatGPT | Kltool
+            AI | Kltool
         </title>
         {{>general_css_js}}
         {{>materialize}}
@@ -13,7 +13,7 @@
             <div class="container-fluid">
                 {{>header}}
             </div>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col s12">
                         <h5 class="page_title">
@@ -24,7 +24,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-md-12">
+                    <div class="col s3">
+                        <h6>
+                            <strong>Some of your recent searches - </strong>
+                        </h6>
+                        <div class="recent_search_list">
+                        </div>
+                    </div>
+                    <div class="col-9 col-md-9">
                         <form class="chatgpt" id="chatgpt">
                             <div class="input-field">
                               {{!-- <input type="text" name="chatgpt" id="chatgpt" /> --}}
@@ -33,13 +40,11 @@
                             </div>
                             <button type="submit" class="kltool-button btn deep-purple darken-1 right hide">Submit</button>
                         </form>
-                    </div>
-                    <div class="col-12 col-md-12">
-                      <div class="chatgpt-response">
-                        <h6 class="purple-heading" id="question"></h6>
-                        <div class="center" id="loader"><img src="/img/loader.gif" height="30" width="30" /></div>
-                        <div class="answer"></div>
-                      </div>
+                        <div class="chatgpt-response">
+                            <h6 class="purple-heading" id="question"></h6>
+                            <div class="center" id="loader"><img src="/img/loader.gif" height="30" width="30" /></div>
+                            <div class="answer"></div>
+                        </div>
                     </div>
                 </div>
             </div>

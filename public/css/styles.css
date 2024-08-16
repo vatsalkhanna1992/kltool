@@ -337,6 +337,20 @@ textarea:focus-visible {
     padding: 10px;
 }
 
+.kltool-ai .recent_search_list ul li {
+    margin-top: 100px;
+}
+
+.kltool-ai .recent_search_list ul li a {
+    color: #673ab7;
+    text-decoration: none;
+}
+
+.kltool-ai h6 {
+    padding-top: 15px;
+    color: #673ab7;
+}
+
 .note-board h5 i,
 .note-board h5 span,
 .kltool-ai h5 span,
@@ -479,7 +493,8 @@ p.note_title {
     border: none;
     border-radius: 5px;
     background-color: rgba(244,244,244);
-    padding-top: 13px;
+    padding-top: 15px;
+    padding-left: 10px;
     color: #5e35b1;
 }
 
