@@ -5,8 +5,8 @@ const auth = require("../middleware/auth");
 const router = new express.Router();
 const hbs = require("hbs");
 
-// Fetch Progress Board for a user.
-router.get("/progress-board", auth, async (req, res) => {
+// Fetch Default Board for a user.
+router.get("/default-board", auth, async (req, res) => {
   const username = req.user.username;
   try {
     const cards = await Cards.find({ username });

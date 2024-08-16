@@ -9,11 +9,21 @@ router.get("/kltool-ai", auth, async (req, res) => {
 
 router.post("/search/kltool-ai", auth, async (req, res) => {
   const search_string = req.body.search_string;
+  const username = req.user.username;
+
   if (search_string) {
-    const result = await kltoolAI(search_string);
-    res.send({
-      result: result
-    })
+    try {
+      const result = await kltoolAI(search_string);
+      res.send({
+        result: result,
+        username: username
+      })
+    }
+    catch (e) {
+      res.send({
+        result: 'Cannot retrieve data. Please try again after sometime.'
+      })
+    }
   }
 });
 

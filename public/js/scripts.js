@@ -70,7 +70,7 @@ $('.kanban-board .states .state').click(function() {
             status: status
         },
         success: function(result) {
-            window.location.href = "/progress-board";
+            window.location.href = "/default-board";
         }
     })
 })
@@ -94,7 +94,7 @@ $('.remove-card').click(function(e) {
             if (Object.keys(result).length == 2) {
                 window.location.href = '/board/' + result.board_id;
             } else {
-                window.location.href = '/progress-board';
+                window.location.href = '/default-board';
             }
         }
     })
@@ -297,7 +297,7 @@ function drop(event, element) {
         },
         success: function(response) {
             if (response.card) {
-                window.location.href = "/progress-board";
+                window.location.href = "/default-board";
             }
         }
     })
@@ -355,9 +355,10 @@ $('form.chatgpt').submit(function(e) {
     e.preventDefault();
     var search_string = $('textarea[name="chatgpt"]').val();
     $(this).find('textarea').val('');
-    $('.chatgpt-response .question').html('');
+    $('.chatgpt-response #question').html('');
     $('.chatgpt-response .answer').html('');
-    $('.chatgpt-response .question').html('<p><strong>'+ search_string +'<strong></p>');
+    document.getElementById("question").innerText = search_string;
+    $('.chatgpt-response').find('#question').addClass('question');
     $.ajax({
         url: '/search/kltool-ai',
         method: 'post',
@@ -372,6 +373,14 @@ $('form.chatgpt').submit(function(e) {
                 $('.chatgpt-response .answer').html('<p>' + marked.parse(response.result) + '</p>');
             }
             $("#loader").hide();
+            let question_counter = + sessionStorage.getItem(response.username + '_question_counter');
+            if (!question_counter || question_counter == 3 || question_counter === undefined || question_counter === null) {
+                question_counter = 0;
+            }
+            question_counter = + question_counter;
+            question_counter++;
+            sessionStorage.setItem(response.username + '_' + 'question_' + question_counter, search_string);
+            sessionStorage.setItem(response.username + '_question_counter', question_counter++);
         }
     })
 })

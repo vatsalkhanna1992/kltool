@@ -328,6 +328,15 @@ textarea:focus-visible {
     text-align: center;
 }
 
+.kltool-ai #question {
+    white-space: pre-wrap;
+}
+
+.kltool-ai .question {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
 .note-board h5 i,
 .note-board h5 span,
 .kltool-ai h5 span,

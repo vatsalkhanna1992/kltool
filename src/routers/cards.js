@@ -19,7 +19,7 @@ router.post("/add/card", auth, async (req, res) => {
   try {
     const card = new Cards({ username, title, description, status, completed });
     await card.save();
-    res.status(301).redirect("/progress-board");
+    res.status(301).redirect("/default-board");
   } catch (e) {
     res.status(400).send({
       error: "Card cannot be added.",
@@ -58,7 +58,7 @@ router.post("/update/card", auth, async (req, res) => {
         status,
         completed,
       });
-      res.status(301).redirect("/progress-board");
+      res.status(301).redirect("/default-board");
     }
   } catch (e) {
     res.status(400).send({

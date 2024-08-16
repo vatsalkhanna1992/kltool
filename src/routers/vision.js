@@ -39,6 +39,7 @@ router.get("/kltool-vision", auth, async (req, res) => {
 });
 
 router.post("/kltool-vision", auth, async (req, res) => {
+  const username = req.user.username;
   upload(req, res, async (err) => {
     if (err) {
       return res.send(err);
